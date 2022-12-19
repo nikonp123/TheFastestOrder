@@ -1,0 +1,10 @@
+.navbar {
+    &__links {
+        display: flex;
+        justify-content: flex-start;
+        text-align: center;
+    }
+    &__link {
+        margin: 5px 5px;
+    }    
+}

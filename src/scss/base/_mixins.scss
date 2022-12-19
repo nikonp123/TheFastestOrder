@@ -1,0 +1,11 @@
+@mixin background-img($img) {
+    @extend %background-setup; //it's partitial
+    background-image: url($img);
+}    
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
