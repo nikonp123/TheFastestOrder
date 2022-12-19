@@ -1,10 +1,31 @@
+.header {
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    };
+}
+
+.lang-menu {
+    display: flex;    
+    &__item {
+        list-style-type: none;
+        margin: 5px 5px;        
+    }
+}
+
 .navbar {
     &__links {
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
         text-align: center;
     }
     &__link {
         margin: 5px 5px;
     }    
+}
+
+.form-select {
+    display: flex;
+    width: 70px;
 }

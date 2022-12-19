@@ -1,11 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { TypeOfExpression } from 'typescript';
 import authSlice from './authSlice';
+import { goodsApi } from './goodsApi';
+import languageSlice from './languageSlice';
 
 const store = configureStore({
   reducer: {
     auth: authSlice,
+    lang: languageSlice,
+    [goodsApi.reducerPath]: goodsApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(goodsApi.middleware),
 });
 
 export default store;
