@@ -1,6 +1,8 @@
 export const TRANSLATIONS_UA = {
   titleAbout: 'По-українськи по-новому',
   somethingElse: 'Тут ще щось по-українські',
+  errorLoading: 'Помилка завантаження',
+  invalidPageTitle: 'Упс! Щось пішло не так. Сторінку не знайдено.',
   page1: {
     titlePage1: 'Укр titlePage1',
     page11: {

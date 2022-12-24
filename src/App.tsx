@@ -3,23 +3,28 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Router from './pages/router';
 import { useGetGoodsQuery } from './store/goodsApi';
+import { useTranslation } from 'react-i18next';
+import { Container, Navbar } from 'react-bootstrap';
+import NavbarList from './components/NavbarList';
 
 function App() {
   const {
     data: goods,
     error: errorGoods,
     isLoading: isLoadingGoods,
-  } = useGetGoodsQuery(5);
-
-  console.log(goods);
-  console.log(errorGoods);
-  console.log(isLoadingGoods);
+  } = useGetGoodsQuery(10);
+  const { t } = useTranslation();
 
   return (
     <div className="App">
-      <NavBar />
+      <header>
+        <Navbar bg="dark" variant="dark" expand="lg">
+          <NavbarList />
+        </Navbar>
+      </header>
       <Router />
       {isLoadingGoods && <h1>Loading...</h1>}
+      {errorGoods && <h1>{t('errorLoading')}</h1>}
     </div>
   );
 }
