@@ -1,8 +1,8 @@
-@import 'base';
+// @import 'base';
 
 * {
     box-sizing: border-box;
-    font-family: $primary-font-family;
+    // font-family: $primary-font-family;
 }
 
 
@@ -10,4 +10,10 @@ html {
     scroll-behavior: smooth;
   }
 
+body {
+    --bs-offcanvas-width: 200px;
+}
 
+.offcanvas {
+    width: var(--bs-offcanvas-width);
+}

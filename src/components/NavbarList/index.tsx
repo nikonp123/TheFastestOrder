@@ -26,12 +26,14 @@ export default function NavbarList(props: IAppProps) {
         className="justify-content-between"
       >
         <Nav className="mr-auto">
-          <Nav.Link>
-            <Link to="/about">About</Link>
-          </Nav.Link>
-          <Nav.Link>
-            <Link to="/home">Home</Link>
-          </Nav.Link>
+          {/* <Nav.Link> */}
+          <Link to="/about" className="me-2">
+            About
+          </Link>
+          {/* </Nav.Link> */}
+          {/* <Nav.Link> */}
+          <Link to="/home">Home</Link>
+          {/* </Nav.Link> */}
           {/* <Nav.Link>
             <Link to="/users">Users</Link>
           </Nav.Link> */}

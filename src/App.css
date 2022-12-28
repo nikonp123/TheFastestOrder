@@ -38,3 +38,7 @@
     transform: rotate(360deg);
   }
 }
+
+.offcanvas.offcanvas-start {
+  width: 200px;
+}

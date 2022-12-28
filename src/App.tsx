@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
-import NavBar from './components/NavBar';
+import './scss/style.scss';
 import Router from './pages/router';
 import { useGetGoodsQuery } from './store/goodsApi';
 import { useTranslation } from 'react-i18next';
-import { Container, Navbar } from 'react-bootstrap';
-import NavbarList from './components/NavbarList';
+import Navigationbar from './pages/Navigationbar';
 
 function App() {
   const {
@@ -13,15 +12,12 @@ function App() {
     error: errorGoods,
     isLoading: isLoadingGoods,
   } = useGetGoodsQuery(10);
+
   const { t } = useTranslation();
 
   return (
     <div className="App">
-      <header>
-        <Navbar bg="dark" variant="dark" expand="lg">
-          <NavbarList />
-        </Navbar>
-      </header>
+      <Navigationbar></Navigationbar>
       <Router />
       {isLoadingGoods && <h1>Loading...</h1>}
       {errorGoods && <h1>{t('errorLoading')}</h1>}

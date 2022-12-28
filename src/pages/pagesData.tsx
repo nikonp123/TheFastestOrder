@@ -3,10 +3,17 @@ import { routerType } from '../types/router.types';
 import About from './About';
 import ErrorPage from './ErrorPage';
 import Home from './Home';
+import Main from './Main';
 
 const pagesData: routerType[] = [
   {
-    path: '',
+    path: '/',
+    element: <Main />,
+    title: 'main',
+    exact: true,
+  },
+  {
+    path: 'home',
     element: <Home />,
     title: 'home',
     exact: true,

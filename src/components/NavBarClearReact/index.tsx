@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import Container from '../Container';
+import Container from '../ContainerClearReact';
 import { useTranslation } from 'react-i18next';
 import './style.scss';
 import { ESupportedLangs } from '../../config/i18nConfig';
