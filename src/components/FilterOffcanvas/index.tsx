@@ -52,11 +52,11 @@ export default function FilterOffcanvas({ show, handleClose }: IAppProps) {
   // }
   // //test finish
 
+  console.log(goods);
   if (goods !== undefined) {
     goodsCategory = getGoodsCategory(goods);
   }
 
-  // console.log(goods);
   // console.log(goodsCategory);
   return (
     <>

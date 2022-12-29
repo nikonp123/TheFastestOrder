@@ -9,8 +9,8 @@ export function getGoodsCategory(goods: goodsType[]): goodsGroupType[] {
 
   const goodsCategory: goodsGroupType[] = [];
   goods.forEach((el) => {
-    if (!goodsCategory.find((elG) => elG.id === el.group.id)) {
-      goodsCategory.push({ id: el.group.id, title: el.group.title });
+    if (!goodsCategory.find((elG) => elG.id === el.good.group.id)) {
+      goodsCategory.push({ id: el.good.group.id, title: el.good.group.title });
     }
   });
   goodsCategory.sort((a, b) => {

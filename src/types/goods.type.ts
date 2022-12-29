@@ -3,9 +3,12 @@ export interface goodsGroupType {
   title: string;
 }
 
-export interface goodsType {
+export interface goodType {
   id: string;
   title: string;
   group: goodsGroupType;
-  balance: number;
+}
+export interface goodsType {
+  good: goodType;
+  balance?: number;
 }

@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseUrlRestApi } from '../config/restApiConig';
 import { goodsGroupType, goodsType } from '../types/goods.type';
+import { orderType } from '../types/order.type';
 
 export const goodsApi = createApi({
   reducerPath: 'goodsApi',
@@ -24,7 +25,14 @@ export const goodsApi = createApi({
         params: { limit, onlyWithBalance, goodsCategoryStr },
       }),
     }),
+    postOrder: builder.mutation<string, orderType>({
+      query: (order) => ({
+        url: 'Orders',
+        method: 'POST',
+        body: order,
+      }),
+    }),
   }),
 });
 
-export const { useGetGoodsQuery } = goodsApi;
+export const { useGetGoodsQuery, usePostOrderMutation } = goodsApi;
