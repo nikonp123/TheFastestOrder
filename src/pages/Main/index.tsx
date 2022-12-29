@@ -21,7 +21,7 @@ export default function Main() {
           </Button>
           <FilterOffcanvas show={show} handleClose={handleClose} />
         </Col>
-        <Col className="" xs={12} md={10}></Col>
+        <Col className="text-center" xs={12} md={10}></Col>
       </Row>
     </Container>
   );
