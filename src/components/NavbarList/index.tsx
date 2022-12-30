@@ -8,9 +8,9 @@ import Form from 'react-bootstrap/Form';
 
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-export interface IAppProps {}
+export interface INavbarListProps {}
 
-export default function NavbarList(props: IAppProps) {
+export default function NavbarList(props: INavbarListProps) {
   const { i18n } = useTranslation();
   const showModalHandler = () => {};
   const onChangeLangHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {

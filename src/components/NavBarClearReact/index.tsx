@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next';
 import './style.scss';
 import { ESupportedLangs } from '../../config/i18nConfig';
 
-export interface IAppProps {}
+export interface INavBarProps {}
 
-export default function NavBar(props: IAppProps) {
+export default function NavBar(props: INavBarProps) {
   const { i18n } = useTranslation();
 
   const onChangeLangHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {

@@ -17,3 +17,30 @@ body {
 .offcanvas {
     width: var(--bs-offcanvas-width);
 }
+
+.card-title {
+    height: 5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    // &:hover { 
+    //     // overflow: visible;
+    //     // text-overflow: unset;        
+    //     content: attr(data-title2); 
+    //     background-color: red;
+    //    }  
+    // &:after { 
+    // // overflow: visible;
+    // // text-overflow: unset;        
+    // content: attr(data-title); 
+    // background-color: blueviolet;
+    // }           
+    // &:hover {
+    //     overflow: visible;
+    //     text-overflow: unset;
+    //     white-space: normal;
+    //     height: auto;
+    //   }    
+}

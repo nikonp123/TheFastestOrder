@@ -1,13 +1,13 @@
-import { goodsGroupType, goodsType } from '../types/goods.type';
+import { IGoodsGroupType, IGoodsType } from '../types/goods.type';
 
-export function getGoodsCategory(goods: goodsType[]): goodsGroupType[] {
+export function getGoodsCategory(goods: IGoodsType[]): IGoodsGroupType[] {
   // const goodsCategoryAll: string[] | undefined = [];
   // goods?.forEach((el) => {
   //   goodsCategoryAll.push(el.group.title);
   // });
   // const goodsCategory: string[] = Array.from(new Set(goodsCategoryAll));
 
-  const goodsCategory: goodsGroupType[] = [];
+  const goodsCategory: IGoodsGroupType[] = [];
   goods.forEach((el) => {
     if (!goodsCategory.find((elG) => elG.id === el.good.group.id)) {
       goodsCategory.push({ id: el.good.group.id, title: el.good.group.title });

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export interface IAppProps {}
+export interface IErrorPageProps {}
 
-export default function ErrorPage(props: IAppProps) {
+export default function ErrorPage(props: IErrorPageProps) {
   const { t } = useTranslation();
   return (
     <div>

@@ -3,9 +3,9 @@ import React from 'react';
 // the hook
 import { useTranslation } from 'react-i18next';
 
-export interface IAppProps {}
+export interface IAboutProps {}
 
-export default function About(props: IAppProps) {
+export default function About(props: IAboutProps) {
   const { t } = useTranslation();
   return (
     <div>

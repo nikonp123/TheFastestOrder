@@ -1,61 +1,20 @@
-import React, { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useTranslation } from 'react-i18next';
-import { useGetGoodsQuery } from '../../store/goodsApi';
-import { goodsGroupType, goodsType } from '../../types/goods.type';
-import { getGoodsCategory } from '../../utilites/handlingGoods';
+import { IGoodsGroupType } from '../../types/goods.type';
 import FormWithCheckBoxes from '../FormWithCheckBoxes';
 
-interface IAppProps {
+interface IFilterOffcanvasProps {
   show: boolean;
+  goodsCategory: IGoodsGroupType[];
   handleClose: () => void;
 }
 
-export default function FilterOffcanvas({ show, handleClose }: IAppProps) {
-  let goodsCategory: goodsGroupType[] = [];
-  // goodsCategory.push({ id: '11', title: 'Рыба' });
-  // goodsCategory.push({ id: '12', title: 'Х/з' });
-  let goodsCategoryStr: string = 'УТ-00001810,УТ-00002184';
-
-  const {
-    data: goods,
-    error: errorGoods,
-    isLoading: isLoadingGoods,
-  } = useGetGoodsQuery({
-    // limit: 100,
-    onlyWithBalance: true,
-    goodsCategoryStr,
-  });
+export default function FilterOffcanvas({
+  show,
+  goodsCategory,
+  handleClose,
+}: IFilterOffcanvasProps) {
   const { t } = useTranslation();
-
-  // //test start
-  // const goods: goodsType[] | undefined = [];
-  // if (goods !== undefined) {
-  //   goods.push({
-  //     id: '1',
-  //     title: 'Корюшка',
-  //     group: { id: '11', title: 'Рыба' },
-  //     balance: 11,
-  //   });
-  //   goods.push({
-  //     id: '2',
-  //     title: 'Рыбные чипсы',
-  //     group: { id: '12', title: 'Снеки' },
-  //     balance: 5,
-  //   });
-  //   goods.push({
-  //     id: '3',
-  //     title: 'Куриные чипсы',
-  //     group: { id: '12', title: 'Снеки' },
-  //     balance: 4,
-  //   });
-  // }
-  // //test finish
-
-  console.log(goods);
-  if (goods !== undefined) {
-    goodsCategory = getGoodsCategory(goods);
-  }
 
   // console.log(goodsCategory);
   return (

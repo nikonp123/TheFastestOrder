@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import './scss/style.scss';
 import Router from './pages/router';
-import { useGetGoodsQuery } from './store/goodsApi';
 import { useTranslation } from 'react-i18next';
 import Navigationbar from './pages/Navigationbar';
 

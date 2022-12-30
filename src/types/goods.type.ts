@@ -1,14 +1,14 @@
-export interface goodsGroupType {
+export interface IGoodsGroupType {
   id: string;
   title: string;
 }
 
-export interface goodType {
+export interface IGoodType {
   id: string;
   title: string;
-  group: goodsGroupType;
+  group: IGoodsGroupType;
 }
-export interface goodsType {
-  good: goodType;
+export interface IGoodsType {
+  good: IGoodType;
   balance?: number;
 }

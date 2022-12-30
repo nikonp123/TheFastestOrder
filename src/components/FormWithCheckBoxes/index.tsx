@@ -1,11 +1,13 @@
 import Form from 'react-bootstrap/Form';
-import { goodsGroupType } from '../../types/goods.type';
+import { IGoodsGroupType } from '../../types/goods.type';
 
-type Props = {
-  goodsCategory: goodsGroupType[];
-};
+interface IFormWithCheckBoxesProps {
+  goodsCategory: IGoodsGroupType[];
+}
 
-export default function FormWithCheckBoxes({ goodsCategory }: Props) {
+export default function FormWithCheckBoxes({
+  goodsCategory,
+}: IFormWithCheckBoxesProps) {
   return (
     <Form>
       {goodsCategory.map((el) => (
