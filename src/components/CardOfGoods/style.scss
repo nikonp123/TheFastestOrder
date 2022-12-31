@@ -1,0 +1,13 @@
+/* Chrome, Safari, Edge, Opera */
+.small-number-input-without-arrows::-webkit-outer-spin-button, 
+.small-number-input-without-arrows::-webkit-inner-spin-button
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+  }
+  

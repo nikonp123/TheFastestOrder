@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import CartButtonHeader from '../CartButtonHeader';
 export interface INavbarListProps {}
 
 export default function NavbarList(props: INavbarListProps) {
@@ -15,6 +16,14 @@ export default function NavbarList(props: INavbarListProps) {
   const showModalHandler = () => {};
   const onChangeLangHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     i18n.changeLanguage(e.target.value);
+  };
+
+  const showCartHandler = () => {
+    // setCartIsVisible(true);
+  };
+
+  const hideCartHandler = () => {
+    // setCartIsVisible(false);
   };
 
   return (
@@ -57,6 +66,7 @@ export default function NavbarList(props: INavbarListProps) {
           </Form.Select>
         </Nav>
       </Navbar.Collapse>
+      <CartButtonHeader onClick={showCartHandler} />
     </Container>
   );
 }
