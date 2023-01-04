@@ -51,7 +51,7 @@ export default function Home(props: IHomeProps) {
     <div>
       {isLoading && <h1>Завантаження в 1С</h1>}
       {errMsg && <h1>{errMsg}</h1>}
-      <Button onClick={() => handleOnClick(order)}>
+      <Button className="mt-5" onClick={() => handleOnClick(order)}>
         Відправити тестове замовлення
       </Button>
     </div>

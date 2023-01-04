@@ -12,3 +12,10 @@ export interface IGoodsType {
   good: IGoodType;
   balance?: number;
 }
+
+export interface ICartType {
+  good: IGoodType;
+  count: number;
+  price: number;
+  summa: number;
+}

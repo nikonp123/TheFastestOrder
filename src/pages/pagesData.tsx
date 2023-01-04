@@ -26,13 +26,13 @@ const pagesData: routerType[] = [
   },
   {
     path: 'error',
-    element: <ErrorPage />,
+    element: <ErrorPage errorTitle="Немає такої сторінки" />,
     title: 'error',
     exact: true,
   },
   {
     path: '*',
-    element: <ErrorPage />,
+    element: <ErrorPage errorTitle="Немає такої сторінки" />,
     title: 'error',
     exact: true,
   },

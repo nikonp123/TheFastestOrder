@@ -48,12 +48,12 @@ export default function NavbarList(props: INavbarListProps) {
           </Nav.Link> */}
         </Nav>
         <Nav>
-          <Button variant="primary" className="me-2" onClick={showModalHandler}>
+          {/* <Button variant="primary" className="me-2" onClick={showModalHandler}>
             Log In
           </Button>
           <Button variant="primary" className="me-2" onClick={showModalHandler}>
             Sign out
-          </Button>
+          </Button> */}
 
           <Form.Select
             size="sm"

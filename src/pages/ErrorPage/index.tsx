@@ -1,13 +1,12 @@
-import * as React from 'react';
-import { useTranslation } from 'react-i18next';
+export interface IErrorPageProps {
+  errorTitle: string;
+}
 
-export interface IErrorPageProps {}
-
-export default function ErrorPage(props: IErrorPageProps) {
-  const { t } = useTranslation();
+export default function ErrorPage({ errorTitle }: IErrorPageProps) {
   return (
     <div>
-      <h1>{t('invalidPageTitle')}</h1>
+      <h1>Error:</h1>
+      <h1>{errorTitle}</h1>
     </div>
   );
 }

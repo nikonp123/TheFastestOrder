@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import authSlice from './authSlice';
+import { authReducer } from './authSlice';
 import { goodsApi } from './goodsApi';
-import languageSlice from './languageSlice';
+import { languageReducer } from './languageSlice';
+import { cartReducer } from './cartSlice';
 
 const store = configureStore({
   reducer: {
-    auth: authSlice,
-    lang: languageSlice,
+    auth: authReducer,
+    lang: languageReducer,
+    cart: cartReducer,
     [goodsApi.reducerPath]: goodsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

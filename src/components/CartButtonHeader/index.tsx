@@ -7,7 +7,7 @@ interface ICartButtonHeaderProps {
 
 export default function CartButtonHeader(props: ICartButtonHeaderProps) {
   // temp plug
-  const isButtonAnnimated = false;
+  const isButtonAnnimated = true;
   const cartItemsNumber = 2;
   // temp plug
 

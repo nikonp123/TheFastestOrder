@@ -22,8 +22,11 @@ const authSlice = createSlice({
     signIn(state, action: PayloadAction<boolean>) {
       state.isAuth = true;
     },
+    signOut(state, action: PayloadAction<boolean>) {
+      state.isAuth = false;
+    },
   },
 });
 
-export default authSlice.reducer;
-export const { signIn } = authSlice.actions;
+export const authReducer = authSlice.reducer;
+export const authActions = authSlice.actions;

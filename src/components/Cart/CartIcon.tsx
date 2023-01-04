@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface ICartIconProps {}
 
 function CartIcon(props: ICartIconProps) {

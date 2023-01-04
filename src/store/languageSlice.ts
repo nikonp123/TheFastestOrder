@@ -11,7 +11,7 @@ const initialState: languageState = {
 };
 
 const languageSlice = createSlice({
-  name: 'langage',
+  name: 'language',
   initialState,
   reducers: {
     changeLanguageMy(state, action: PayloadAction<languageType>) {
@@ -20,5 +20,5 @@ const languageSlice = createSlice({
   },
 });
 
-export default languageSlice.reducer;
-export const { changeLanguageMy } = languageSlice.actions;
+export const languageReducer = languageSlice.reducer;
+export const languageActions = languageSlice.actions;
