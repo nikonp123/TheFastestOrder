@@ -3,8 +3,10 @@ export const TRANSLATIONS_UA = {
   somethingElse: 'Тут ще щось по-українські',
   errorLoading: 'Помилка завантаження',
   invalidPageTitle: 'Упс! Щось пішло не так. Сторінку не знайдено.',
-  Filter: 'Фільтр',
-  GoodsCategory: 'Категорії товарів',
+  filter: 'Фільтр',
+  goodsCategory: 'Категорії товарів',
+  loadingData: 'Завантажую дані',
+  apply: 'Застосувати',
   page1: {
     titlePage1: 'Укр titlePage1',
     page11: {

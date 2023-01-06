@@ -19,3 +19,19 @@ export interface ICartType {
   price: number;
   summa: number;
 }
+
+export const enum ENamesGoodsFilters {
+  category = 'category',
+  onlyWithBalance = 'onlyWithBalance',
+}
+
+export interface IGoodFilter {
+  value: string | number | boolean;
+  apply: boolean;
+}
+
+export interface IGoodsFilters {
+  name: ENamesGoodsFilters;
+  value?: string | number | boolean;
+  filters?: IGoodFilter[];
+}

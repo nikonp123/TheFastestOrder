@@ -9,10 +9,16 @@ import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import CartButtonHeader from '../CartButtonHeader';
+import { useAppSelector } from '../../hooks';
+import { ESupportedLangs } from '../../config/i18nConfig';
 export interface INavbarListProps {}
 
 export default function NavbarList(props: INavbarListProps) {
   const { i18n } = useTranslation();
+
+  const user = useAppSelector((state) => state.auth);
+  const defaultLang = user.language;
+
   const showModalHandler = () => {};
   const onChangeLangHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     i18n.changeLanguage(e.target.value);
@@ -28,7 +34,7 @@ export default function NavbarList(props: INavbarListProps) {
 
   return (
     <Container>
-      <Navbar.Brand>Belosvet TM</Navbar.Brand>
+      <Navbar.Brand>Belosvet&copy;. Менеджер: {user.name}</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse
         id="responsive-navbar-nav"
@@ -60,9 +66,10 @@ export default function NavbarList(props: INavbarListProps) {
             aria-label="Default select example"
             className="w-auto"
             onChange={onChangeLangHandler}
+            value={defaultLang}
           >
-            <option value="ua">ua</option>
-            <option value="ru">ru</option>
+            <option value={ESupportedLangs.ua}>{ESupportedLangs.ua}</option>
+            <option value={ESupportedLangs.ru}>{ESupportedLangs.ru}</option>
           </Form.Select>
         </Nav>
       </Navbar.Collapse>

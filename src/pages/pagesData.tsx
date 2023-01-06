@@ -5,7 +5,7 @@ import ErrorPage from './ErrorPage';
 import Home from './Home';
 import Main from './Main';
 
-const pagesData: routerType[] = [
+export const privatePagesData: routerType[] = [
   {
     path: '/',
     element: <Main />,
@@ -38,4 +38,29 @@ const pagesData: routerType[] = [
   },
 ];
 
-export default pagesData;
+export const publicPagesData: routerType[] = [
+  {
+    path: '/',
+    element: <About />,
+    title: 'about',
+    exact: true,
+  },
+  {
+    path: 'about',
+    element: <About />,
+    title: 'about',
+    exact: true,
+  },
+  {
+    path: 'error',
+    element: <ErrorPage errorTitle="Немає такої сторінки" />,
+    title: 'error',
+    exact: true,
+  },
+  {
+    path: '*',
+    element: <ErrorPage errorTitle="Немає такої сторінки" />,
+    title: 'error',
+    exact: true,
+  },
+];

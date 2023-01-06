@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { TRANSLATIONS_UA } from './translations/ua/translations';
 import { TRANSLATIONS_RU } from './translations/ru/translations';
-import { defaultLang } from './config/i18nConfig';
+import { defaultLanguage } from './config/i18nConfig';
 
 i18n
   .use(LanguageDetector)
@@ -19,4 +19,4 @@ i18n
     },
   });
 
-i18n.changeLanguage(defaultLang);
+i18n.changeLanguage(defaultLanguage);

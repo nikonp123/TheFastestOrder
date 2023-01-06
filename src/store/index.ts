@@ -1,19 +1,25 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { authReducer } from './authSlice';
-import { goodsApi } from './goodsApi';
 import { languageReducer } from './languageSlice';
 import { cartReducer } from './cartSlice';
+import { goodsApi } from './goodsApi';
+import { userApi } from './userApi';
+import { goodsFiltersReducer } from './goodsFiltersSlice';
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     lang: languageReducer,
     cart: cartReducer,
+    goodsFilters: goodsFiltersReducer,
     [goodsApi.reducerPath]: goodsApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(goodsApi.middleware),
+    getDefaultMiddleware()
+      .concat(goodsApi.middleware)
+      .concat(userApi.middleware),
 });
 
 export default store;

@@ -3,6 +3,8 @@ export const TRANSLATIONS_RU = {
   somethingElse: 'Тут что-то по руцки',
   errorLoading: 'Ошибка загрузки',
   invalidPageTitle: 'Упс! Что-то пошло не так. Страница не найдена',
-  Filter: 'Фильтр проверка',
-  GoodsCategory: 'Категории товаров',
+  filter: 'Фильтр проверка',
+  goodsCategory: 'Категории товаров',
+  loadingData: 'Загрузка данных',
+  apply: 'Применить',
 };

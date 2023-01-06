@@ -2,6 +2,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useTranslation } from 'react-i18next';
 import { IGoodsGroupType } from '../../types/goods.type';
 import FormWithCheckBoxes from '../FormWithCheckBoxes';
+import { Button } from 'react-bootstrap';
 
 interface IFilterOffcanvasProps {
   show: boolean;
@@ -16,14 +17,17 @@ export default function FilterOffcanvas({
 }: IFilterOffcanvasProps) {
   const { t } = useTranslation();
 
+  const applyHandler = () => {};
+
   // console.log(goodsCategory);
   return (
     <>
-      {/* {errorGoods && <h1>Something went wrong</h1>}
-      {isLoadingGoods && <h1>Loading goods categories...</h1>} */}
       <Offcanvas show={show} onHide={handleClose}>
+        {/* <Button className="mt-1" onClick={applyHandler}>
+          {t('apply')}
+        </Button> */}
         <Offcanvas.Header closeButton className="w-200">
-          <Offcanvas.Title>{t('GoodsCategory')}</Offcanvas.Title>
+          <Offcanvas.Title>{t('goodsCategory')}</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <FormWithCheckBoxes goodsCategory={goodsCategory} />

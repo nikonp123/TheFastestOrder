@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import './scss/style.scss';
 import Router from './pages/router';
-import { useTranslation } from 'react-i18next';
 import Navigationbar from './pages/Navigationbar';
+import { useAppDispatch } from './hooks';
+import { signInOut } from './store/authSlice';
+import { useGetUserQuery } from './store/userApi';
 
 function App() {
-  // const {
-  //   data: goods,
-  //   error: errorGoods,
-  //   isLoading: isLoadingGoods,
-  // } = useGetGoodsQuery({ limit: 10 });
-
-  const { t } = useTranslation();
+  const {
+    data: userData,
+    error: errorUser,
+    isSuccess: userSuccess,
+  } = useGetUserQuery('');
+  // console.log(userData);
+  // const dispatch = useAppDispatch();
+  // useEffect(() => {
+  //   dispatch(signInOut(userSuccess));
+  // }, [dispatch, userSuccess]);
 
   return (
     <div className="App">

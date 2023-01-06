@@ -1,17 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { languageType } from '../types/language.type';
+import { defaultLanguage } from '../config/i18nConfig';
 
 type AccessRights = {
   name: string;
   allow: boolean;
 };
 
-type authState = {
+export type authState = {
   isAuth: boolean;
-  accessRight: AccessRights[];
+  name: string;
+  language: languageType;
+  accessRight?: AccessRights[];
 };
 
 const initialState: authState = {
   isAuth: false,
+  name: '',
+  language: defaultLanguage,
   accessRight: [],
 };
 
@@ -19,14 +25,19 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    signIn(state, action: PayloadAction<boolean>) {
-      state.isAuth = true;
+    signInOut(state, action: PayloadAction<boolean>) {
+      state.isAuth = action.payload;
     },
-    signOut(state, action: PayloadAction<boolean>) {
-      state.isAuth = false;
+    setUserProperties(state, action: PayloadAction<authState>) {
+      state.isAuth = action.payload.isAuth;
+      state.language = action.payload.language;
+      state.name = action.payload.name;
+      // state.accessRight = []
     },
   },
 });
 
 export const authReducer = authSlice.reducer;
-export const authActions = authSlice.actions;
+export const { signInOut, setUserProperties } = authSlice.actions;
+// export const authReducer = authSlice.reducer;
+// export const authActions = authSlice.actions;
