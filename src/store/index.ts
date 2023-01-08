@@ -6,6 +6,7 @@ import { cartReducer } from './cartSlice';
 import { goodsApi } from './goodsApi';
 import { userApi } from './userApi';
 import { goodsFiltersReducer } from './goodsFiltersSlice';
+import { goodsCategoryReducer } from './goodsCategorySlice';
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     lang: languageReducer,
     cart: cartReducer,
     goodsFilters: goodsFiltersReducer,
+    goodsCategory: goodsCategoryReducer,
     [goodsApi.reducerPath]: goodsApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
   },

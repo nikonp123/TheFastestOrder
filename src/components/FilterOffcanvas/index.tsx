@@ -1,18 +1,18 @@
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useTranslation } from 'react-i18next';
-import { IGoodsGroupType } from '../../types/goods.type';
+import { IGoodsCategoryType } from '../../types/goods.type';
 import FormWithCheckBoxes from '../FormWithCheckBoxes';
 import { Button } from 'react-bootstrap';
 
 interface IFilterOffcanvasProps {
   show: boolean;
-  goodsCategory: IGoodsGroupType[];
+  // goodsCategory: IGoodsCategoryType[] | undefined;
   handleClose: () => void;
 }
 
 export default function FilterOffcanvas({
   show,
-  goodsCategory,
+  // goodsCategory,
   handleClose,
 }: IFilterOffcanvasProps) {
   const { t } = useTranslation();
@@ -23,14 +23,15 @@ export default function FilterOffcanvas({
   return (
     <>
       <Offcanvas show={show} onHide={handleClose}>
-        {/* <Button className="mt-1" onClick={applyHandler}>
+        {/* <Button className="mt-1" onClick={handleClose}>
           {t('apply')}
         </Button> */}
         <Offcanvas.Header closeButton className="w-200">
           <Offcanvas.Title>{t('goodsCategory')}</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <FormWithCheckBoxes goodsCategory={goodsCategory} />
+          <FormWithCheckBoxes />
+          {/* <FormWithCheckBoxes goodsCategory={goodsCategory} /> */}
         </Offcanvas.Body>
       </Offcanvas>
     </>

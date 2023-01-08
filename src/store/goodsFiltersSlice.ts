@@ -2,13 +2,13 @@ import { PayloadAction, createSlice, current } from '@reduxjs/toolkit';
 import { ENamesGoodsFilters, IGoodsFilters } from '../types/goods.type';
 
 const initialState: IGoodsFilters[] = [
-  {
-    name: ENamesGoodsFilters.category,
-    filters: [
-      { value: 'test category', apply: true },
-      // { value: 'УТ-00000526', apply: true },
-    ],
-  },
+  // {
+  //   name: ENamesGoodsFilters.category,
+  //   filters: [
+  //     { value: 'test category', apply: true },
+  //     // { value: 'УТ-00000526', apply: true },
+  //   ],
+  // },
   // {
   //   name: ENamesGoodsFilters.onlyWithBalance,
   //   value: true,

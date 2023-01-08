@@ -1,18 +1,22 @@
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import { useGetGoodsQuery } from '../../store/goodsApi';
+import { useState, useEffect } from 'react';
+import {
+  useGetCategoryGoodsQuery,
+  useGetGoodsQuery,
+  useLazyGetGoodsQuery,
+} from '../../store/goodsApi';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import ErrorPage from '../../pages/ErrorPage';
-import { IGoodsGroupType } from '../../types/goods.type';
-import { getErrorMessage } from '../../utilites/errorProcessing';
-import { getGoodsCategory } from '../../utilites/handlingGoods';
+import { getStringFromArrayGoodsFiltersByName } from '../../utilites/handlingGoods';
 import CardOfGoods from '../CardOfGoods';
 import FilterOffcanvas from '../FilterOffcanvas';
-import { useAppSelector } from '../../hooks';
-
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getErrorMessage } from '../../utilites/errorProcessing';
+import { addAllGoodsCategory } from '../../store/goodsCategorySlice';
+import { ENamesGoodsFilters } from '../../types/goods.type';
 // interface IFoodsCardsProps {}
 
 export default function GoodsCards() {
@@ -20,24 +24,48 @@ export default function GoodsCards() {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  let goodsCategory: IGoodsGroupType[] = [];
+  // let goodsCategory: IGoodsCategoryType[] = [];
   // let goodsCategoryStr: string = 'УТ-00001810,УТ-00002184';
+  // const currentFilters = useAppSelector((state) => state.goodsFilters);
 
-  const {
-    data: goods,
-    error: errorGoods,
-    isLoading: isLoadingGoods,
-  } = useGetGoodsQuery({
-    // limit: 100,
-    onlyWithBalance: true,
-    // goodsCategoryStr,
-  });
+  const dispatch = useAppDispatch();
+  const currentFilters = useAppSelector((state) => state.goodsFilters);
+  // console.log(currentFilters);
+  const [
+    fetchLazyGoods,
+    { data: goods, error: errorGoods, isLoading: isLoadingGoods },
+  ] = useLazyGetGoodsQuery();
+  // const {
+  //   data: goods,
+  //   error: errorGoods,
+  //   isLoading: isLoadingGoods,
+  // } = useGetGoodsQuery({
+  //   // limit: 100,
+  //   onlyWithBalance: true,
+  //   // goodsCategoryStr,
+  // });
 
   const errMsg = getErrorMessage(errorGoods);
 
-  if (goods !== undefined) {
-    goodsCategory = getGoodsCategory(goods);
-  }
+  const { data: goodsCategory } = useGetCategoryGoodsQuery({});
+  useEffect(() => {
+    if (goodsCategory !== undefined) {
+      dispatch(addAllGoodsCategory(goodsCategory));
+    }
+  }, [dispatch, goodsCategory]);
+
+  useEffect(() => {
+    const goodsCategoryStr = getStringFromArrayGoodsFiltersByName(
+      ENamesGoodsFilters.category,
+      currentFilters
+    );
+    // console.log(goodsCategoryStr);
+    fetchLazyGoods({
+      // limit: 5,
+      onlyWithBalance: true,
+      goodsCategoryStr,
+    });
+  }, [dispatch, fetchLazyGoods, currentFilters]);
 
   return (
     <Container fluid className="mt-5">
@@ -49,12 +77,11 @@ export default function GoodsCards() {
             className="mt-3 me-2 mt-2 btn-sm d-block"
             style={{ width: '140px', height: '30px' }}
           >
-            {/* <svg style={{ width: '30px', height: '30px' }} href={filterIcon} /> */}
             {t('filter')}
           </Button>
           <FilterOffcanvas
             show={show}
-            goodsCategory={goodsCategory}
+            // goodsCategory={goodsCategory}
             handleClose={handleClose}
           />
         </Col>
@@ -64,7 +91,7 @@ export default function GoodsCards() {
           {errorGoods && <ErrorPage errorTitle={errMsg} />}
           {isLoadingGoods && <h1>{t('loadingData')}</h1>}
           {goods?.map((e) => (
-            <CardOfGoods key={e.good.id} dataCart={e} />
+            <CardOfGoods key={e.good.id} dataGood={e} />
           ))}
         </Col>
       </Row>

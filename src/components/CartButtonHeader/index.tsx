@@ -1,3 +1,4 @@
+import { useAppSelector } from '../../hooks';
 import CartIcon from '../Cart/CartIcon';
 import './style.scss';
 
@@ -8,7 +9,8 @@ interface ICartButtonHeaderProps {
 export default function CartButtonHeader(props: ICartButtonHeaderProps) {
   // temp plug
   const isButtonAnnimated = true;
-  const cartItemsNumber = 2;
+  const cartData = useAppSelector((state) => state.cart);
+  const cartItemsNumber = cartData.length;
   // temp plug
 
   const buttonClasses = 'button' + (isButtonAnnimated ? ' bump' : '');

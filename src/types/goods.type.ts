@@ -1,12 +1,13 @@
-export interface IGoodsGroupType {
+export interface IGoodsCategoryType {
   id: string;
   title: string;
+  apply?: boolean;
 }
 
 export interface IGoodType {
   id: string;
   title: string;
-  group: IGoodsGroupType;
+  group: IGoodsCategoryType;
 }
 export interface IGoodsType {
   good: IGoodType;
@@ -16,8 +17,8 @@ export interface IGoodsType {
 export interface ICartType {
   good: IGoodType;
   count: number;
-  price: number;
-  summa: number;
+  price?: number;
+  summa?: number;
 }
 
 export const enum ENamesGoodsFilters {

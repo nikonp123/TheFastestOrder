@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseUrlRestApi } from '../config/restApiConig';
-import { IGoodsType } from '../types/goods.type';
+import { IGoodsCategoryType, IGoodsType } from '../types/goods.type';
 import { IOrderType } from '../types/order.type';
 
 export const goodsApi = createApi({
@@ -25,6 +25,17 @@ export const goodsApi = createApi({
         params: { limit, onlyWithBalance, goodsCategoryStr },
       }),
     }),
+    getCategoryGoods: builder.query<
+      IGoodsCategoryType[],
+      {
+        onlyCategoryGoods?: boolean;
+      }
+    >({
+      query: ({ onlyCategoryGoods = true }) => ({
+        url: `/goods`,
+        params: { onlyCategoryGoods },
+      }),
+    }),
     postOrder: builder.mutation<string, IOrderType>({
       query: (order) => ({
         url: 'orders',
@@ -35,4 +46,9 @@ export const goodsApi = createApi({
   }),
 });
 
-export const { useGetGoodsQuery, usePostOrderMutation } = goodsApi;
+export const {
+  useGetGoodsQuery,
+  useLazyGetGoodsQuery,
+  useGetCategoryGoodsQuery,
+  usePostOrderMutation,
+} = goodsApi;

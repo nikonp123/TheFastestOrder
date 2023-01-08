@@ -1,35 +1,63 @@
+import { useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import {
   ENamesGoodsFilters,
   IGoodFilter,
-  IGoodsGroupType,
+  IGoodsCategoryType,
 } from '../../types/goods.type';
-import { Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeGoodsFilterInArray } from '../../store/goodsFiltersSlice';
+import { useLazyGetGoodsQuery } from '../../store/goodsApi';
+import { getStringFromArrayGoodsFiltersByName } from '../../utilites/handlingGoods';
+import { changeGoodsCategoryChecked } from '../../store/goodsCategorySlice';
+import { FormCheck } from 'react-bootstrap';
 
 interface IFormWithCheckBoxesProps {
-  goodsCategory: IGoodsGroupType[];
+  // goodsCategory: IGoodsCategoryType[] | undefined;
 }
 
-export default function FormWithCheckBoxes({
-  goodsCategory,
-}: IFormWithCheckBoxesProps) {
+export default function FormWithCheckBoxes() {
   const dispatch = useAppDispatch();
   const currentFilters = useAppSelector((state) => state.goodsFilters);
-  // console.log(currentFilters);
+  const goodsCategory = useAppSelector((state) => state.goodsCategory);
+
+  const [
+    fetchGoods,
+    { data: goods, error: errorGoods, isLoading: isLoadingGoods },
+  ] = useLazyGetGoodsQuery();
+
+  useEffect(() => {
+    const goodsCategoryStr = getStringFromArrayGoodsFiltersByName(
+      ENamesGoodsFilters.category,
+      currentFilters
+    );
+    // let goodsCategoryStr: string = 'УТ-00001810,УТ-00002184';
+    fetchGoods({ goodsCategoryStr: goodsCategoryStr });
+  }, [fetchGoods, currentFilters]);
 
   const checkChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     // console.log(`id=${e.target.id} checked=${e.target.checked}`);
+
     const filters: IGoodFilter[] = [];
-    filters.push({ value: e.target.id, apply: e.target.checked });
+    filters.push({
+      value: e.target.id,
+      apply: e.target.checked,
+    });
     dispatch(
       changeGoodsFilterInArray({
         name: ENamesGoodsFilters.category,
         filters: filters,
       })
     );
-    // const testFilterOnlyWithBalance = {
+    dispatch(
+      changeGoodsCategoryChecked({
+        id: e.target.id,
+        title: e.target.title,
+        apply: e.target.checked,
+      })
+    );
+    // let goodsCategoryStr: string = 'УТ-00001810,УТ-00002184';
+    // fetchGoods({ goodsCategoryStr: goodsCategoryStr }); // const testFilterOnlyWithBalance = {
     //   name: ENamesGoodsFilters.onlyWithBalance,
     //   value: false,
     // };
@@ -39,7 +67,7 @@ export default function FormWithCheckBoxes({
   };
   return (
     <Form>
-      {goodsCategory.map((el) => (
+      {goodsCategory?.map((el) => (
         <div key={el.id} className="mb-3">
           <Form.Check
             inline
@@ -48,6 +76,9 @@ export default function FormWithCheckBoxes({
             // name="group1"
             type={'checkbox'}
             id={el.id}
+            key={el.id}
+            // defaultChecked={false}
+            checked={el.apply}
             onChange={(e) => checkChangeHandler(e)}
           />
         </div>
