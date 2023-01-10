@@ -61,7 +61,7 @@ export default function GoodsCards() {
     );
     // console.log(goodsCategoryStr);
     fetchLazyGoods({
-      // limit: 5,
+      limit: 3,
       onlyWithBalance: true,
       goodsCategoryStr,
     });

@@ -11,14 +11,17 @@ export interface IGoodType {
 }
 export interface IGoodsType {
   good: IGoodType;
+  price?: number;
   balance?: number;
 }
 
 export interface ICartType {
   good: IGoodType;
   count: number;
+  balance: number;
   price?: number;
   summa?: number;
+  error?: string;
 }
 
 export const enum ENamesGoodsFilters {

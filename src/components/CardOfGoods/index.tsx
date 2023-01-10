@@ -6,7 +6,8 @@ import imgTest from '../../grenka.png';
 import { Form, InputGroup } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeItemCart } from '../../store/cartSlice';
-import { getDataCart } from '../../utilites/handlingGoods';
+// import { getDataCart } from '../../utilites/handlingCart';
+import { useState } from 'react';
 
 interface ICardOfGoodsProps {
   dataGood: IGoodsType;
@@ -14,21 +15,30 @@ interface ICardOfGoodsProps {
 
 function CardOfGoods({ dataGood }: ICardOfGoodsProps) {
   const dispatch = useAppDispatch();
-  const changeCart = (count: number): void => {
+  const currentCountV =
+    useAppSelector((state) => state.cart).find(
+      (e) => e.good.id === dataGood.good.id
+    )?.count ?? 0;
+  const [count, setCount] = useState(currentCountV);
+  console.log(`render: ${dataGood.good.title} `);
+
+  const changeCount = (c: number): void => {
+    setCount((prev) => (prev + c < 0 ? 0 : prev + c));
+  };
+
+  const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setCount(+e.target.value);
+  };
+
+  const orderHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const currentItem: ICartType = {
       good: dataGood.good,
+      balance: dataGood.balance ? dataGood.balance : 0,
       count: count,
     };
     dispatch(changeItemCart(currentItem));
   };
-
-  const changeInputHandler = () => {
-    // changeCart(currentCount);
-  };
-
-  const dataCart = useAppSelector((state) => state.cart);
-  const currentCount = getDataCart(dataCart, dataGood.good.id);
-  // console.log(dataCart);
 
   return (
     <>
@@ -51,7 +61,9 @@ function CardOfGoods({ dataGood }: ICardOfGoodsProps) {
           >
             {dataGood.good.title}
           </Card.Title>
-          <Card.Text>Залишок: {dataGood.balance}</Card.Text>
+          <Card.Text>
+            Залишок: {dataGood.balance} ціна: {dataGood.price?.toFixed(2)}{' '}
+          </Card.Text>
           <Card.Footer>
             <InputGroup size="sm" className="mb-3">
               <InputGroup.Text id="inputGroup-sizing-sm"></InputGroup.Text>
@@ -60,17 +72,17 @@ function CardOfGoods({ dataGood }: ICardOfGoodsProps) {
                 aria-describedby="inputGroup-sizing-sm"
                 type="number"
                 placeholder="Count goods"
-                min={1}
-                // step={0.1}
+                min={0}
+                step={0.1}
                 // defaultValue="0"
                 className="small-number-input-without-arrows text-center"
-                value={currentCount}
+                value={count}
                 onChange={changeInputHandler}
               />
               <Button
                 className="ms-1 d-block w-25"
                 variant="outline-secondary"
-                onClick={() => changeCart(1)}
+                onClick={() => changeCount(1)}
                 // id="button-addon2"
               >
                 +
@@ -78,14 +90,16 @@ function CardOfGoods({ dataGood }: ICardOfGoodsProps) {
               <Button
                 className="ms-1 d-block w-25"
                 variant="outline-secondary"
-                onClick={() => changeCart(-1)}
+                onClick={() => changeCount(-1)}
                 // id="button-addon2"
               >
                 -
               </Button>
               <InputGroup.Text id="inputGroup-sizing-sm"></InputGroup.Text>{' '}
             </InputGroup>
-            <Button variant="primary">Заказати</Button>
+            <Button variant="primary" onClick={orderHandler}>
+              Замовити
+            </Button>
           </Card.Footer>
         </Card.Body>
       </Card>

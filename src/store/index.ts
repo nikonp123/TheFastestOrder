@@ -7,12 +7,14 @@ import { goodsApi } from './goodsApi';
 import { userApi } from './userApi';
 import { goodsFiltersReducer } from './goodsFiltersSlice';
 import { goodsCategoryReducer } from './goodsCategorySlice';
+import { errorsHandlerReducer } from './errorsHandlerSlice';
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     lang: languageReducer,
     cart: cartReducer,
+    errors: errorsHandlerReducer,
     goodsFilters: goodsFiltersReducer,
     goodsCategory: goodsCategoryReducer,
     [goodsApi.reducerPath]: goodsApi.reducer,

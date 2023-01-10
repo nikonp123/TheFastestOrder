@@ -9,20 +9,27 @@ import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import CartButtonHeader from '../CartButtonHeader';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ESupportedLangs } from '../../config/i18nConfig';
+import { useState } from 'react';
+import { changeLanguageMy } from '../../store/languageSlice';
+
 export interface INavbarListProps {}
 
 export default function NavbarList(props: INavbarListProps) {
   const { i18n } = useTranslation();
 
+  const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth);
-  const defaultLang = user.language;
+  const currentLanguage = useAppSelector((state) => state.lang).currentLanguage;
+  // console.log('1');
 
-  const showModalHandler = () => {};
   const onChangeLangHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     i18n.changeLanguage(e.target.value);
+    dispatch(changeLanguageMy(e.target.value));
   };
+
+  const showModalHandler = () => {};
 
   const showCartHandler = () => {
     // setCartIsVisible(true);
@@ -42,6 +49,9 @@ export default function NavbarList(props: INavbarListProps) {
       >
         <Nav className="mr-auto">
           {/* <Nav.Link> */}
+          <Link to="/" className="me-2">
+            Головна
+          </Link>
           <Link to="/about" className="me-2">
             About
           </Link>
@@ -66,7 +76,7 @@ export default function NavbarList(props: INavbarListProps) {
             aria-label="Default select example"
             className="w-auto"
             onChange={onChangeLangHandler}
-            value={defaultLang}
+            value={currentLanguage}
           >
             <option value={ESupportedLangs.ua}>{ESupportedLangs.ua}</option>
             <option value={ESupportedLangs.ru}>{ESupportedLangs.ru}</option>

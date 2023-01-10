@@ -4,6 +4,7 @@ import { IUserType } from '../types/user.type';
 import { authState, setUserProperties, signInOut } from './authSlice';
 import { defaultLanguage, returnLanguage } from '../config/i18nConfig';
 import i18next from 'i18next';
+import { changeLanguageMy } from './languageSlice';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -26,6 +27,7 @@ export const userApi = createApi({
               language: returnLanguage(data[0].options.language),
             };
             dispatch(setUserProperties(userProperties));
+            dispatch(changeLanguageMy(userProperties.language));
             i18next.changeLanguage(userProperties.language);
           }
           //   dispatch(signInOut(true));

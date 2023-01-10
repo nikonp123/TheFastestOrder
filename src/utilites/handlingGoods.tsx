@@ -62,12 +62,3 @@ export function getStringFromArrayGoodsFiltersByName(
   }
   return goodsCategoryStr;
 }
-
-export function getDataCart(cart: ICartType[], id: string): number {
-  let currentCount = 0;
-  const cartById = cart.find((e) => e.good.id === id);
-  if (cartById) {
-    currentCount = cartById.count;
-  }
-  return currentCount;
-}
