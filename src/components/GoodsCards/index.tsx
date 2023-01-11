@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import {
   useGetCategoryGoodsQuery,
-  useGetGoodsQuery,
   useLazyGetGoodsQuery,
 } from '../../store/goodsApi';
 import Container from 'react-bootstrap/Container';
@@ -17,13 +16,14 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getErrorMessage } from '../../utilites/errorProcessing';
 import { addAllGoodsCategory } from '../../store/goodsCategorySlice';
 import { ENamesGoodsFilters } from '../../types/goods.type';
+import RadioShowCards from '../RadioShowCards';
 // interface IFoodsCardsProps {}
 
 export default function GoodsCards() {
   const { t } = useTranslation();
-  const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const [showFilters, setShowFilters] = useState(false);
+  const handleShow = () => setShowFilters(true);
+  const handleClose = () => setShowFilters(false);
   // let goodsCategory: IGoodsCategoryType[] = [];
   // let goodsCategoryStr: string = 'УТ-00001810,УТ-00002184';
   // const currentFilters = useAppSelector((state) => state.goodsFilters);
@@ -35,15 +35,6 @@ export default function GoodsCards() {
     fetchLazyGoods,
     { data: goods, error: errorGoods, isLoading: isLoadingGoods },
   ] = useLazyGetGoodsQuery();
-  // const {
-  //   data: goods,
-  //   error: errorGoods,
-  //   isLoading: isLoadingGoods,
-  // } = useGetGoodsQuery({
-  //   // limit: 100,
-  //   onlyWithBalance: true,
-  //   // goodsCategoryStr,
-  // });
 
   const errMsg = getErrorMessage(errorGoods);
 
@@ -61,7 +52,7 @@ export default function GoodsCards() {
     );
     // console.log(goodsCategoryStr);
     fetchLazyGoods({
-      limit: 3,
+      // limit: 3,
       onlyWithBalance: true,
       goodsCategoryStr,
     });
@@ -69,23 +60,25 @@ export default function GoodsCards() {
 
   return (
     <Container fluid className="mt-5">
-      <Row className="justify-content-md-start text-center">
-        <Col className="text-start mb-2">
+      <Row>
+        <Col className="text-start mb-2 d-flex flex-row align-items-center">
           <Button
             variant="primary"
             onClick={handleShow}
             className="mt-3 me-2 mt-2 btn-sm d-block"
-            style={{ width: '140px', height: '30px' }}
+            style={{ width: '140px' }}
           >
             {t('filter')}
           </Button>
           <FilterOffcanvas
-            show={show}
+            show={showFilters}
             // goodsCategory={goodsCategory}
             handleClose={handleClose}
           />
+          <RadioShowCards />
         </Col>
       </Row>
+
       <Row>
         <Col className="text-center d-flex justify-content-center flex-wrap">
           {errorGoods && <ErrorPage errorTitle={errMsg} />}

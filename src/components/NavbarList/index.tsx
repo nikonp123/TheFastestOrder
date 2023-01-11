@@ -29,15 +29,15 @@ export default function NavbarList(props: INavbarListProps) {
     dispatch(changeLanguageMy(e.target.value));
   };
 
-  const showModalHandler = () => {};
-
   const showCartHandler = () => {
     // setCartIsVisible(true);
   };
 
-  const hideCartHandler = () => {
-    // setCartIsVisible(false);
-  };
+  // const showModalHandler = () => {};
+
+  // const hideCartHandler = () => {
+  //   // setCartIsVisible(false);
+  // };
 
   return (
     <Container>

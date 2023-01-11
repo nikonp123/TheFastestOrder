@@ -8,11 +8,13 @@ import { userApi } from './userApi';
 import { goodsFiltersReducer } from './goodsFiltersSlice';
 import { goodsCategoryReducer } from './goodsCategorySlice';
 import { errorsHandlerReducer } from './errorsHandlerSlice';
+import { settingsReducer } from './settingsSlice';
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     lang: languageReducer,
+    settings: settingsReducer,
     cart: cartReducer,
     errors: errorsHandlerReducer,
     goodsFilters: goodsFiltersReducer,

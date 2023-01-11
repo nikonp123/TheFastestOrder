@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { ICartType, IGoodsType } from '../../types/goods.type';
 import imgTest from '../../grenka.png';
-import { Form, InputGroup } from 'react-bootstrap';
+import { Form, InputGroup, Table } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeItemCart } from '../../store/cartSlice';
 // import { getDataCart } from '../../utilites/handlingCart';
@@ -20,7 +20,7 @@ function CardOfGoods({ dataGood }: ICardOfGoodsProps) {
       (e) => e.good.id === dataGood.good.id
     )?.count ?? 0;
   const [count, setCount] = useState(currentCountV);
-  console.log(`render: ${dataGood.good.title} `);
+  // console.log(`render: ${dataGood.good.title} `);
 
   const changeCount = (c: number): void => {
     setCount((prev) => (prev + c < 0 ? 0 : prev + c));
@@ -30,7 +30,7 @@ function CardOfGoods({ dataGood }: ICardOfGoodsProps) {
     setCount(+e.target.value);
   };
 
-  const orderHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const orderHandler: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     const currentItem: ICartType = {
       good: dataGood.good,
@@ -42,6 +42,17 @@ function CardOfGoods({ dataGood }: ICardOfGoodsProps) {
 
   return (
     <>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+      </Table>
+
       <Card border="primary" className="me-1 mt-1 " style={{ width: '15rem' }}>
         <Card.Img
           variant="top"

@@ -9,6 +9,7 @@ export interface IGoodType {
   title: string;
   group: IGoodsCategoryType;
 }
+
 export interface IGoodsType {
   good: IGoodType;
   price?: number;
