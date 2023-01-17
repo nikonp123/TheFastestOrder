@@ -1,5 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  ChangeEvent,
+} from 'react';
 import {
   useGetCategoryGoodsQuery,
   useGetGoodsQuery,
@@ -16,17 +22,21 @@ import FilterOffcanvas from '../FilterOffcanvas';
 import { useAppSelector } from '../../hooks';
 import { getErrorMessage } from '../../utilites/errorProcessing';
 import RadioShowCards from '../RadioShowCards';
-import { Form, Table } from 'react-bootstrap';
+import { Form, NavDropdown, Table } from 'react-bootstrap';
 import useCardVariant from '../../hooks/use-card-variant';
 import { defaultSetForCardVariants } from '../../config/settingsConfig';
 import SpinnerLoading from '../UI/Spinner/SpinnerLoading';
 import { ENamesGoodsFilters } from '../../types/goods.type';
 import { useDebounce } from '../../hooks/use-debounce';
+import './style.scss';
+import { EOrderGoodsVariants } from '../../types/settings.type';
+import OrderGoods from '../OrderGoods';
 
 export default function Goods() {
   const { t } = useTranslation();
   const [showFilters, setShowFilters] = useState(false);
   const [search, setSearch] = useState('');
+  const [currenVariantOrderGoods, setCurrenVariantOrderGoods] = useState('');
   const handleShow = useCallback(() => setShowFilters(true), []);
   const handleClose = useCallback(() => setShowFilters(false), []);
 
@@ -70,11 +80,20 @@ export default function Goods() {
         onlyWithBalance: true,
         goodsCategoryStr,
         goodsName: debounced.length < 3 ? '' : debounced,
+        orderGoods: currenVariantOrderGoods,
       },
       // preferCacheValue
       true
     );
-  }, [fetchLazyGoods, currentFilters, debounced]);
+  }, [fetchLazyGoods, currentFilters, debounced, currenVariantOrderGoods]);
+
+  const onChangeOrderGoodsHandler = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      console.log(e.target.value);
+      setCurrenVariantOrderGoods(e.target.value);
+    },
+    []
+  );
 
   const renderGoods = () => {
     return goods?.map((e) => (
@@ -83,49 +102,58 @@ export default function Goods() {
   };
 
   return (
-    <Container fluid className="mt-5">
-      <Row>
-        <Col className="text-start mb-2 d-flex flex-row align-items-center">
-          <Button
-            variant="primary"
-            onClick={handleShow}
-            className="me-2 mt-3 btn-sm d-block"
-            style={{ width: '140px' }}
-          >
-            {t('filter')}
-          </Button>
-          <FilterOffcanvas show={showFilters} handleClose={handleClose} />
-          <RadioShowCards />
-
-          <Form className="ms-2 me-2 mt-3 d-flex ">
-            <Form.Control
-              type="search"
-              placeholder="пошук"
-              className="me-2"
-              aria-label="Search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+    <Container fluid className="mt-2 ps-0 ">
+      <Container
+        fluid
+        className="position-fixed mt-2 ml-0 w-100 bg-info zIndex"
+      >
+        <Row>
+          <Col className="text-start mb-2 d-flex flex-row align-items-center">
+            <Button
+              variant="primary"
+              onClick={handleShow}
+              className="me-2 mt-3 btn-sm d-block"
+              style={{ width: '140px' }}
+            >
+              {t('filter')}
+            </Button>
+            <FilterOffcanvas show={showFilters} handleClose={handleClose} />
+            <RadioShowCards />
+            <OrderGoods
+              onChangeOrderGoodsHandler={onChangeOrderGoodsHandler}
+              currenVariantOrderGoods={currenVariantOrderGoods}
             />
-          </Form>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col className="text-center d-flex justify-content-center flex-wrap">
-          {errorGoods && <ErrorPage errorTitle={errMsg} />}
-          {(isLoadingGoods || isFetchingGoods) && (
-            <h1>
-              {t('loadingData')} <SpinnerLoading />
-            </h1>
-          )}
-          {cardVariant === defaultSetForCardVariants && (
-            <Table striped bordered hover>
-              <tbody>{renderGoods()}</tbody>
-            </Table>
-          )}
-          {cardVariant !== defaultSetForCardVariants && renderGoods()}
-        </Col>
-      </Row>
+            <Form className="ms-2 me-2 mt-3 d-flex ">
+              <Form.Control
+                type="search"
+                placeholder="пошук"
+                className="me-2"
+                aria-label="Search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+      <Container fluid className="mt-5 pt-4">
+        <Row className="mt-5">
+          <Col className="text-center d-flex justify-content-center flex-wrap">
+            {errorGoods && <ErrorPage errorTitle={errMsg} />}
+            {(isLoadingGoods || isFetchingGoods) && (
+              <h1>
+                {t('loadingData')} <SpinnerLoading />
+              </h1>
+            )}
+            {cardVariant === defaultSetForCardVariants && (
+              <Table striped bordered hover>
+                <tbody>{renderGoods()}</tbody>
+              </Table>
+            )}
+            {cardVariant !== defaultSetForCardVariants && renderGoods()}
+          </Col>
+        </Row>
+      </Container>
     </Container>
   );
 }

@@ -9,6 +9,7 @@ export default function CardGoodItem({
   dataGood,
   count,
   cardVariant,
+  error,
   changeCount,
   changeInputHandler,
   orderHandler,
@@ -17,6 +18,7 @@ export default function CardGoodItem({
     dataGood,
     count,
     cardVariant,
+    error,
     orderHandler,
     changeCount,
     changeInputHandler,
@@ -24,7 +26,7 @@ export default function CardGoodItem({
 
   return (
     <Card border="primary" className="me-1 mt-1 " style={{ width: '15rem' }}>
-      <CardAttribute dataGood={dataGood} />
+      <CardAttribute dataGood={dataGood} error={error} />
       <Card.Footer>
         <CardInputGroup {...cardProps} />
       </Card.Footer>

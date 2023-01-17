@@ -3,6 +3,11 @@ export enum ECardVariants {
   cards = 'cards',
 }
 
+export enum EOrderGoodsVariants {
+  byName = 'За найменуванням',
+  increasePrice = 'Спочатку дешеві',
+  decreasePrice = 'Спочатку дорогі',
+}
 export const radiosCardVariants = [
   { name: 'таблиця', value: ECardVariants.table },
   { name: 'картки', value: ECardVariants.cards },

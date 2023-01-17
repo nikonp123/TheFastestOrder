@@ -20,6 +20,7 @@ export interface IGoodItemComponentProps {
   dataGood: IGoodsType;
   count: number;
   cardVariant: SettingsValueType;
+  error: string;
   changeCount: (c: number) => void;
   changeInputHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   orderHandler: (e: MouseEvent) => void;
@@ -31,6 +32,10 @@ function GoodItem({ dataGood, cardVariant }: IGoodItemProps) {
     useAppSelector((state) => state.cart).find(
       (e) => e.good.id === dataGood.good.id
     )?.count ?? 0;
+  const error =
+    useAppSelector((state) => state.cart).find(
+      (e) => e.good.id === dataGood.good.id
+    )?.error ?? '';
   const [count, setCount] = useState(currentCountV);
   // console.log(`render: ${dataGood.good.title} `);
 
@@ -62,6 +67,7 @@ function GoodItem({ dataGood, cardVariant }: IGoodItemProps) {
     dataGood,
     count,
     cardVariant,
+    error,
     orderHandler,
     changeCount,
     changeInputHandler,

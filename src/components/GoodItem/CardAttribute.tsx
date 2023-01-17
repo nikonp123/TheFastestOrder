@@ -2,12 +2,18 @@ import * as React from 'react';
 import { Card } from 'react-bootstrap';
 import imgTest from '../../grenka.png';
 import { IGoodsType } from '../../types/goods.type';
-
+import './style.scss';
 interface ICardAttributeProps {
   dataGood: IGoodsType;
+  error: string;
 }
 
-export default function CardAttribute({ dataGood }: ICardAttributeProps) {
+export default function CardAttribute({
+  dataGood,
+  error,
+}: ICardAttributeProps) {
+  const classErrorCart = error ? ' errorCart ' : '';
+  // console.log(error);
   return (
     <Card.Body className="p-0">
       <Card.Img
@@ -18,7 +24,7 @@ export default function CardAttribute({ dataGood }: ICardAttributeProps) {
         // style={{ height: '8rem' }}
       />
       <Card.Title
-        className="ms-0"
+        className={'ms-0' + classErrorCart}
         data-title={dataGood.good.id}
         data-title2="Test for :hover in style.scss"
         title={dataGood.good.title}

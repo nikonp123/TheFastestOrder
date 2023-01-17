@@ -8,6 +8,7 @@ export default function CardInputGroup({
   dataGood,
   count,
   cardVariant,
+  error,
   changeCount,
   changeInputHandler,
   orderHandler,

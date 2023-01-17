@@ -1,8 +1,6 @@
 import { PayloadAction, createSlice, current } from '@reduxjs/toolkit';
 import { ICartType } from '../types/goods.type';
 import { checkCount } from '../utilites/handlingCart';
-import { setError } from './errorsHandlerSlice';
-import { useAppDispatch } from '../hooks';
 
 const initialState: ICartType[] = [];
 
@@ -20,21 +18,18 @@ const cartSlice = createSlice({
       // }
 
       const error = checkCount(action.payload.count, action.payload.balance);
-      // console.log(error);
-      if (error === '') {
-        if (indexOfGood === -1) {
-          if (action.payload.count > 0) {
-            state.push(action.payload);
-          }
-        } else {
-          state[indexOfGood].count = action.payload.count;
-          // state[indexOfGood].count =
-          // state[indexOfGood].count + action.payload.count;
-          if (state[indexOfGood].count <= 0) {
-            state.splice(indexOfGood, 1);
-          }
+      if (indexOfGood === -1) {
+        if (action.payload.count > 0) {
+          state.push(action.payload);
         }
       } else {
+        state[indexOfGood].count = action.payload.count;
+        state[indexOfGood].error = error;
+        // state[indexOfGood].count =
+        // state[indexOfGood].count + action.payload.count;
+        if (state[indexOfGood].count <= 0) {
+          state.splice(indexOfGood, 1);
+        }
       }
     },
     removeItemCart(state, action: PayloadAction<{ id: string }>) {

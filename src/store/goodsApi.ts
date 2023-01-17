@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseUrlRestApi } from '../config/restApiConig';
 import { IGoodsCategoryType, IGoodsType } from '../types/goods.type';
 import { IOrderType } from '../types/order.type';
+import { EOrderGoodsVariants } from '../types/settings.type';
 
 export const goodsApi = createApi({
   reducerPath: 'goodsApi',
@@ -17,6 +18,7 @@ export const goodsApi = createApi({
         onlyWithBalance?: boolean;
         goodsCategoryStr?: string;
         goodsName?: string;
+        orderGoods?: string;
       }
     >({
       query: ({
@@ -24,9 +26,16 @@ export const goodsApi = createApi({
         onlyWithBalance = true,
         goodsCategoryStr = '',
         goodsName = '',
+        orderGoods = EOrderGoodsVariants.byName,
       }) => ({
         url: `/goods`,
-        params: { limit, onlyWithBalance, goodsCategoryStr, goodsName },
+        params: {
+          limit,
+          onlyWithBalance,
+          goodsCategoryStr,
+          goodsName,
+          orderGoods,
+        },
       }),
     }),
     getCategoryGoods: builder.query<
