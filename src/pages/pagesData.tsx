@@ -1,3 +1,4 @@
+import Cart from '../components/Cart';
 import { routerType } from '../types/router.types';
 
 import About from './About';
@@ -28,6 +29,12 @@ export const privatePagesData: routerType[] = [
     path: 'error',
     element: <ErrorPage errorTitle="Немає такої сторінки" />,
     title: 'error',
+    exact: true,
+  },
+  {
+    path: 'cart',
+    element: <Cart />,
+    title: 'Кошик',
     exact: true,
   },
   {

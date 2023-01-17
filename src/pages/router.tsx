@@ -7,6 +7,7 @@ import useUserAuth from '../hooks/use-auth';
 const Router = () => {
   let pagesData: routerType[] = [];
   const { userIsAuth } = useUserAuth();
+
   if (userIsAuth) {
     pagesData = privatePagesData;
   } else {

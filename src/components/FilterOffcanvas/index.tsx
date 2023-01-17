@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { IGoodsCategoryType } from '../../types/goods.type';
 import FormWithCheckBoxes from '../FormWithCheckBoxes';
 import { Button } from 'react-bootstrap';
+import React from 'react';
 
 interface IFilterOffcanvasProps {
   show: boolean;
@@ -17,7 +18,7 @@ export default function FilterOffcanvas({
 }: IFilterOffcanvasProps) {
   const { t } = useTranslation();
 
-  const applyHandler = () => {};
+  // const applyHandler = () => {};
 
   // console.log(goodsCategory);
   return (

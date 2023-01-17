@@ -1,15 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ECardVariants } from '../types/settings.type';
+import { SettingsValueType } from '../types/settings.type';
+import { defaultSetForCardVariants } from '../config/settingsConfig';
 
 type settingsState = {
   name: string;
-  value: string | number | boolean | undefined;
+  value: SettingsValueType;
 };
 
 const initialState: settingsState[] = [
   {
     name: 'cardsVariant',
-    value: ECardVariants.table,
+    value: defaultSetForCardVariants,
   },
 ];
 

@@ -1,5 +1,6 @@
 import { useAppSelector } from '../../hooks';
 import CartIcon from '../Cart/CartIcon';
+import { useEffect, useState } from 'react';
 import './style.scss';
 
 interface ICartButtonHeaderProps {
@@ -7,10 +8,21 @@ interface ICartButtonHeaderProps {
 }
 
 export default function CartButtonHeader(props: ICartButtonHeaderProps) {
-  // temp plug
-  const isButtonAnnimated = true;
+  const [isButtonAnnimated, setIsButtonAnnimated] = useState(false);
   const cartData = useAppSelector((state) => state.cart);
   const cartItemsNumber = cartData.length;
+  useEffect(() => {
+    if (cartItemsNumber !== 0) {
+      setIsButtonAnnimated(true);
+    }
+    const timer = setTimeout(() => {
+      setIsButtonAnnimated(false);
+    }, 300);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [cartItemsNumber]);
+
   // temp plug
 
   const buttonClasses = 'button' + (isButtonAnnimated ? ' bump' : '');

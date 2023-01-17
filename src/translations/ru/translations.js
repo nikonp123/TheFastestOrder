@@ -1,5 +1,5 @@
 export const TRANSLATIONS_RU = {
-  titleAbout: 'По-кацапски по-новому',
+  titleAbout: 'По оккупантски',
   somethingElse: 'Тут что-то по руцки',
   errorLoading: 'Ошибка загрузки',
   invalidPageTitle: 'Упс! Что-то пошло не так. Страница не найдена',
@@ -7,4 +7,5 @@ export const TRANSLATIONS_RU = {
   goodsCategory: 'Категории товаров',
   loadingData: 'Загрузка данных',
   apply: 'Применить',
+  search: 'Поиск',
 };

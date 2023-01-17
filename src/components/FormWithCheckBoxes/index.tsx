@@ -18,22 +18,8 @@ interface IFormWithCheckBoxesProps {
 
 export default function FormWithCheckBoxes() {
   const dispatch = useAppDispatch();
-  const currentFilters = useAppSelector((state) => state.goodsFilters);
+  // const currentFilters = useAppSelector((state) => state.goodsFilters);
   const goodsCategory = useAppSelector((state) => state.goodsCategory);
-
-  const [
-    fetchGoods,
-    { data: goods, error: errorGoods, isLoading: isLoadingGoods },
-  ] = useLazyGetGoodsQuery();
-
-  useEffect(() => {
-    const goodsCategoryStr = getStringFromArrayGoodsFiltersByName(
-      ENamesGoodsFilters.category,
-      currentFilters
-    );
-    // let goodsCategoryStr: string = 'УТ-00001810,УТ-00002184';
-    fetchGoods({ goodsCategoryStr: goodsCategoryStr });
-  }, [fetchGoods, currentFilters]);
 
   const checkChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     // console.log(`id=${e.target.id} checked=${e.target.checked}`);

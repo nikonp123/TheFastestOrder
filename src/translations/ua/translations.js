@@ -1,5 +1,5 @@
 export const TRANSLATIONS_UA = {
-  titleAbout: 'По-українськи по-новому',
+  titleAbout: 'Українською',
   somethingElse: 'Тут ще щось по-українські',
   errorLoading: 'Помилка завантаження',
   invalidPageTitle: 'Упс! Щось пішло не так. Сторінку не знайдено.',
@@ -7,6 +7,7 @@ export const TRANSLATIONS_UA = {
   goodsCategory: 'Категорії товарів',
   loadingData: 'Завантажую дані',
   apply: 'Застосувати',
+  search: 'Пошук',
   page1: {
     titlePage1: 'Укр titlePage1',
     page11: {

@@ -6,6 +6,8 @@ import { IOrderType } from '../types/order.type';
 export const goodsApi = createApi({
   reducerPath: 'goodsApi',
   baseQuery: fetchBaseQuery({ baseUrl: baseUrlRestApi }),
+  keepUnusedDataFor: 600,
+  // refetchOnFocus: false,
   // ,paramsSerializer: (goodsCategory)=>()
   endpoints: (builder) => ({
     getGoods: builder.query<
@@ -14,15 +16,17 @@ export const goodsApi = createApi({
         limit?: number;
         onlyWithBalance?: boolean;
         goodsCategoryStr?: string;
+        goodsName?: string;
       }
     >({
       query: ({
         limit = 0,
-        onlyWithBalance = false,
+        onlyWithBalance = true,
         goodsCategoryStr = '',
+        goodsName = '',
       }) => ({
         url: `/goods`,
-        params: { limit, onlyWithBalance, goodsCategoryStr },
+        params: { limit, onlyWithBalance, goodsCategoryStr, goodsName },
       }),
     }),
     getCategoryGoods: builder.query<
