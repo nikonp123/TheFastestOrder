@@ -5,7 +5,7 @@ import Router from './pages/router';
 import Navigationbar from './pages/Navigationbar';
 import { useGetUserQuery } from './store/userApi';
 import { useGetCategoryGoodsQuery } from './store/goodsApi';
-import { addAllGoodsCategory } from './store/goodsCategorySlice';
+import { goodsCategoryActions } from './store/goodsCategorySlice';
 import { useAppDispatch } from './hooks';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
   );
   useEffect(() => {
     if (goodsCategory !== undefined) {
-      dispatch(addAllGoodsCategory(goodsCategory));
+      dispatch(goodsCategoryActions.addAllGoodsCategory(goodsCategory));
     }
   }, [dispatch, goodsCategory]);
 

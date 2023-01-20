@@ -5,9 +5,8 @@ import { Button, Container } from 'react-bootstrap';
 import { usePostOrderMutation } from '../../store/goodsApi';
 import { useTranslation } from 'react-i18next';
 import SpinnerLoading from '../UI/Spinner/SpinnerLoading';
-import { clearCart } from '../../store/cartSlice';
+import { cartActions } from '../../store/cartSlice';
 import ModalWindow from '../UI/ModalWindow';
-import { ModalProps } from 'react-bootstrap/Modal';
 import { useCallback, useEffect, useState } from 'react';
 import { getErrorMessage } from '../../utilites/errorProcessing';
 
@@ -33,7 +32,7 @@ export default function Cart() {
         customer_firstName: auth.name,
         goods: cart,
       }).unwrap();
-      dispatch(clearCart());
+      dispatch(cartActions.clearCart());
     } catch (error) {
       // console.log('eror')
       // console.log(error)

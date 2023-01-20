@@ -1,5 +1,5 @@
 import { useAppDispatch } from '../../hooks';
-import { removeItemCart } from '../../store/cartSlice';
+import { cartActions } from '../../store/cartSlice';
 import { ICartType } from '../../types/goods.type';
 import DeleteIcon from './DeleteIcon';
 import './style.scss';
@@ -21,7 +21,7 @@ export default function RowCart({ eCart, index }: IRowCartProps) {
   // const summa = (eCart.count * (eCart?.price ?? 0)).toFixed(2);
 
   const onClickDeleteItemCart = () => {
-    dispatch(removeItemCart({ id: eCart.good.id }));
+    dispatch(cartActions.removeItemCart({ id: eCart.good.id }));
   };
 
   return (

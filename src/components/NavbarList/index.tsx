@@ -12,7 +12,7 @@ import CartButtonHeader from '../CartButtonHeader';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ESupportedLangs } from '../../config/i18nConfig';
 import { useState, useEffect, useCallback } from 'react';
-import { changeLanguageMy } from '../../store/languageSlice';
+import { languageActions } from '../../store/languageSlice';
 import { useDebounce } from '../../hooks/use-debounce';
 import { useGetGoodsQuery } from '../../store/goodsApi';
 
@@ -34,7 +34,7 @@ export default function NavbarList(props: INavbarListProps) {
   const onChangeLangHandler = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>): void => {
       i18n.changeLanguage(e.target.value);
-      dispatch(changeLanguageMy(e.target.value));
+      dispatch(languageActions.changeLanguageMy(e.target.value));
     },
     [i18n, dispatch]
   );

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ButtonGroup, ToggleButton } from 'react-bootstrap';
 import { ECardVariants, radiosCardVariants } from '../../types/settings.type';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setSetting } from '../../store/settingsSlice';
+import { settingsActions } from '../../store/settingsSlice';
 
 function RadioShowCards() {
   const dispatch = useAppDispatch();
@@ -18,7 +18,7 @@ function RadioShowCards() {
   ): void => {
     const value = e.currentTarget.value;
     setRadioValue(value);
-    dispatch(setSetting({ name: 'cardsVariant', value }));
+    dispatch(settingsActions.setSetting({ name: 'cardsVariant', value }));
   };
 
   const radios = radiosCardVariants;

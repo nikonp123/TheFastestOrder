@@ -43,3 +43,21 @@ export function calculatePriceAndAmountCartWithoutDiscount(
   cartItem.amount = cartItem.price * cartItem.count;
   return cartItem;
 }
+
+export function getCountAndAmountOfCart(cartData: ICartType[]): string {
+  let titleCart = '';
+  if (cartData.length !== 0) {
+    const cartItemsNumber = cartData.length.toString();
+    console.log(cartItemsNumber);
+    const initialAmount = 0;
+    const amount = cartData.reduce(
+      (accumulator, amount, currentIndex) =>
+        accumulator + (cartData[currentIndex].amount ?? 0),
+      initialAmount
+    );
+    titleCart = cartItemsNumber + 'од. ' + amount.toFixed(2) + 'грн.';
+    // titleCart = cartItemsNumber + 'од. ∑ ' + amount.toFixed(2) + 'грн.';
+  }
+
+  return titleCart;
+}

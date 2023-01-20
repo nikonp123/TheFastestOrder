@@ -20,5 +20,7 @@ const languageSlice = createSlice({
   },
 });
 
-export const languageReducer = languageSlice.reducer;
-export const { changeLanguageMy } = languageSlice.actions;
+export const { reducer: languageReducer, actions: languageActions } =
+  languageSlice;
+// export const languageReducer = languageSlice.reducer;
+// export const { changeLanguageMy } = languageSlice.actions;

@@ -23,6 +23,9 @@ const goodsCategorySlice = createSlice({
   },
 });
 
-export const { addAllGoodsCategory, changeGoodsCategoryChecked } =
-  goodsCategorySlice.actions;
-export const goodsCategoryReducer = goodsCategorySlice.reducer;
+export const { reducer: goodsCategoryReducer, actions: goodsCategoryActions } =
+  goodsCategorySlice;
+
+// export const { addAllGoodsCategory, changeGoodsCategoryChecked } =
+//   goodsCategorySlice.actions;
+// export const goodsCategoryReducer = goodsCategorySlice.reducer;

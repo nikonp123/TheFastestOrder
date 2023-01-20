@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { ICartType, IGoodType } from '../../types/goods.type';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeItemCart } from '../../store/cartSlice';
+import { cartActions } from '../../store/cartSlice';
 // import { getDataCart } from '../../utilites/handlingCart';
 import { MouseEvent, useCallback, useState } from 'react';
 import CardGoodItem from './CardGoodItem';
@@ -54,7 +54,7 @@ function GoodItem({ dataGood, cardVariant }: IGoodItemProps) {
         good: dataGood,
         count: count,
       };
-      dispatch(changeItemCart(currentItem));
+      dispatch(cartActions.changeItemCart(currentItem));
     },
     [dispatch, dataGood, count]
   );

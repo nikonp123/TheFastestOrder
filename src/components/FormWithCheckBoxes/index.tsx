@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeGoodsFilterInArray } from '../../store/goodsFiltersSlice';
 import { useLazyGetGoodsQuery } from '../../store/goodsApi';
 import { getStringFromArrayGoodsFiltersByName } from '../../utilites/handlingGoods';
-import { changeGoodsCategoryChecked } from '../../store/goodsCategorySlice';
+import { goodsCategoryActions } from '../../store/goodsCategorySlice';
 import { FormCheck } from 'react-bootstrap';
 
 interface IFormWithCheckBoxesProps {
@@ -36,7 +36,7 @@ export default function FormWithCheckBoxes() {
       })
     );
     dispatch(
-      changeGoodsCategoryChecked({
+      goodsCategoryActions.changeGoodsCategoryChecked({
         id: e.target.id,
         title: e.target.title,
         apply: e.target.checked,

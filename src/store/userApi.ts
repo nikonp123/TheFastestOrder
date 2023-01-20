@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseUrlRestApi } from '../config/restApiConig';
 import { IUserType } from '../types/user.type';
-import { authState, setUserProperties, signInOut } from './authSlice';
-import { defaultLanguage, returnLanguage } from '../config/i18nConfig';
+import { authState, authActions } from './authSlice';
+import { returnLanguage } from '../config/i18nConfig';
 import i18next from 'i18next';
-import { changeLanguageMy } from './languageSlice';
+import { languageActions } from './languageSlice';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -27,14 +27,14 @@ export const userApi = createApi({
               phone: data[0].phone,
               language: returnLanguage(data[0].options.language),
             };
-            dispatch(setUserProperties(userProperties));
-            dispatch(changeLanguageMy(userProperties.language));
+            dispatch(authActions.setUserProperties(userProperties));
+            dispatch(languageActions.changeLanguageMy(userProperties.language));
             i18next.changeLanguage(userProperties.language);
           }
           //   dispatch(signInOut(true));
         } catch (err) {
           // `onError` side-effect
-          dispatch(signInOut(false));
+          dispatch(authActions.signInOut(false));
         }
       },
     }),

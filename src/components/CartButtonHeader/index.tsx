@@ -2,6 +2,7 @@ import { useAppSelector } from '../../hooks';
 import CartIcon from '../Cart/CartIcon';
 import { useEffect, useState } from 'react';
 import './style.scss';
+import { getCountAndAmountOfCart } from '../../utilites/handlingCart';
 
 interface ICartButtonHeaderProps {
   onClick: () => void;
@@ -10,9 +11,11 @@ interface ICartButtonHeaderProps {
 export default function CartButtonHeader(props: ICartButtonHeaderProps) {
   const [isButtonAnnimated, setIsButtonAnnimated] = useState(false);
   const cartData = useAppSelector((state) => state.cart);
-  const cartItemsNumber = cartData.length;
+
+  // const cartItemsNumber = cartData.length;
+  const titleCart = getCountAndAmountOfCart(cartData);
   useEffect(() => {
-    if (cartItemsNumber !== 0) {
+    if (titleCart !== '') {
       setIsButtonAnnimated(true);
     }
     const timer = setTimeout(() => {
@@ -21,9 +24,7 @@ export default function CartButtonHeader(props: ICartButtonHeaderProps) {
     return () => {
       clearTimeout(timer);
     };
-  }, [cartItemsNumber]);
-
-  // temp plug
+  }, [titleCart]);
 
   const buttonClasses = 'button' + (isButtonAnnimated ? ' bump' : '');
 
@@ -33,7 +34,7 @@ export default function CartButtonHeader(props: ICartButtonHeaderProps) {
         <CartIcon />
       </span>
       <span>Корзина</span>
-      <span className="badge">{cartItemsNumber}</span>
+      <span className="badge">{titleCart}</span>
     </button>
   );
 }
