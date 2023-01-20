@@ -6,5 +6,6 @@ export interface IUsersOptionsType {
 }
 export interface IUserType {
   name: string;
+  phone: string;
   options: IUsersOptionsType;
 }

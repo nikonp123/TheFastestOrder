@@ -73,18 +73,7 @@ export default function NavbarList(props: INavbarListProps) {
           <Link to="/about" className="me-2">
             About
           </Link>
-          {/* <Link to="/home">Home</Link> */}
         </Nav>
-        {/* <Form className="d-flex">
-          <Form.Control
-            type="search"
-            placeholder="пошук"
-            className="me-2"
-            aria-label="Search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </Form> */}
         <Nav>
           <Form.Select
             size="sm"

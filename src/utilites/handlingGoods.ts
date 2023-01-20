@@ -3,19 +3,19 @@ import {
   ICartType,
   IGoodsCategoryType,
   IGoodsFilters,
-  IGoodsType,
+  IGoodType,
 } from '../types/goods.type';
 
 export function getGoodsCategory(
-  goods: IGoodsType[],
+  goods: IGoodType[],
   currentFilters: IGoodsFilters[]
 ): IGoodsCategoryType[] {
   const goodsCategory: IGoodsCategoryType[] = [];
   goods.forEach((el) => {
-    if (!goodsCategory.find((elG) => elG.id === el.good.group.id)) {
+    if (!goodsCategory.find((elG) => elG.id === el.group.id)) {
       goodsCategory.push({
-        id: el.good.group.id,
-        title: el.good.group.title,
+        id: el.group.id,
+        title: el.group.title,
         apply: false,
       });
     }

@@ -35,3 +35,11 @@ export function checkCount(countForChange: number, balance: number): string {
 
   return errorMessage;
 }
+
+export function calculatePriceAndAmountCartWithoutDiscount(
+  cartItem: ICartType
+): ICartType {
+  cartItem.price = cartItem.good?.price ?? 0;
+  cartItem.amount = cartItem.price * cartItem.count;
+  return cartItem;
+}

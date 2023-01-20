@@ -24,6 +24,7 @@ export const userApi = createApi({
             const userProperties: authState = {
               isAuth: true,
               name: data[0].name,
+              phone: data[0].phone,
               language: returnLanguage(data[0].options.language),
             };
             dispatch(setUserProperties(userProperties));

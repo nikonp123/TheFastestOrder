@@ -8,4 +8,6 @@ export const TRANSLATIONS_RU = {
   loadingData: 'Загрузка данных',
   apply: 'Применить',
   search: 'Поиск',
+  sendingOrder: 'Отправка заказа',
+  error: 'Ошибка',
 };

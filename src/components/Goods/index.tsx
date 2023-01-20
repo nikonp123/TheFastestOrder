@@ -40,21 +40,9 @@ export default function Goods() {
   const handleShow = useCallback(() => setShowFilters(true), []);
   const handleClose = useCallback(() => setShowFilters(false), []);
 
-  const currentFiltersState = useAppSelector((state) => state.goodsFilters);
-  const currentFilters = useMemo(() => {
-    return currentFiltersState;
-  }, [currentFiltersState]);
+  const currentFilters = useAppSelector((state) => state.goodsFilters);
 
   const debounced = useDebounce(search);
-  // const {
-  //   data: goods,
-  //   error: errorGoods,
-  //   isLoading: isLoadingGoods,
-  //   isFetching: isFetchingGoods,
-  // } = useGetGoodsQuery(
-  //   { goodsName: debounced },
-  //   { skip: debounced.length < 3 }
-  // );
 
   const [
     fetchLazyGoods,
@@ -89,7 +77,6 @@ export default function Goods() {
 
   const onChangeOrderGoodsHandler = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      console.log(e.target.value);
       setCurrenVariantOrderGoods(e.target.value);
     },
     []
@@ -97,7 +84,7 @@ export default function Goods() {
 
   const renderGoods = () => {
     return goods?.map((e) => (
-      <GoodItem key={e.good.id} dataGood={e} cardVariant={cardVariant} />
+      <GoodItem key={e.id} dataGood={e} cardVariant={cardVariant} />
     ));
   };
 

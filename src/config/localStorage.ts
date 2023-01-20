@@ -1,0 +1,1 @@
+export const cartItemsLocalSrorage = 'cartItems';

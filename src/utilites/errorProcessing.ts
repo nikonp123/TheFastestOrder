@@ -14,6 +14,13 @@ export function getErrorMessage(currentError: ErrorType): string {
           errMsg = 'Помилка авторизації';
           // signIn(false);
         }
+      } else if ('data' in currentError) {
+        // you can access all properties of `FetchBaseQueryError` here
+        errMsg =
+          'error' in currentError
+            ? currentError.error
+            : JSON.stringify(currentError.data);
+        // : currentError.data[0].message;
       }
     } else {
       // you can access all properties of `SerializedError` here

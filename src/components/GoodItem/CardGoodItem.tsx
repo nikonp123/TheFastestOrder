@@ -26,7 +26,7 @@ export default function CardGoodItem({
 
   return (
     <Card border="primary" className="me-1 mt-1 " style={{ width: '15rem' }}>
-      <CardAttribute dataGood={dataGood} error={error} />
+      <CardAttribute dataGood={dataGood} error={error} count={count} />
       <Card.Footer>
         <CardInputGroup {...cardProps} />
       </Card.Footer>

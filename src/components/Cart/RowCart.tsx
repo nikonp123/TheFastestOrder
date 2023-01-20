@@ -1,5 +1,7 @@
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch } from '../../hooks';
+import { removeItemCart } from '../../store/cartSlice';
 import { ICartType } from '../../types/goods.type';
+import DeleteIcon from './DeleteIcon';
 import './style.scss';
 
 interface IRowCartProps {
@@ -8,17 +10,31 @@ interface IRowCartProps {
 }
 
 export default function RowCart({ eCart, index }: IRowCartProps) {
-  const classErrorCart = eCart.error ? ' errorCart ' : '';
+  const dispatch = useAppDispatch();
+  const classCart = eCart.error ? ' errorCart ' : '';
+  // ? ' errorCart '
+  // : eCart.count !== 0
+  // ? ' validCart '
+  // : '';
+
   //get summa with customer's discount
-  //   const summa = (eCart.count * (eCart?.price ?? 0)).toFixed(2);
+  // const summa = (eCart.count * (eCart?.price ?? 0)).toFixed(2);
+
+  const onClickDeleteItemCart = () => {
+    dispatch(removeItemCart({ id: eCart.good.id }));
+  };
+
   return (
-    <tr className={classErrorCart}>
+    <tr className={classCart}>
       {/* <td>{index}</td> */}
       <td>{eCart.good.title}</td>
       <td>{eCart.count}</td>
       <td>{eCart.price}</td>
-      <td>{eCart.summa}</td>
-      <td>{eCart.balance}</td>
+      <td>{eCart.amount}</td>
+      <td className="hoverDeleteIcon" onClick={onClickDeleteItemCart}>
+        <DeleteIcon />
+      </td>
+      <td>{eCart.good.balance}</td>
     </tr>
   );
 }

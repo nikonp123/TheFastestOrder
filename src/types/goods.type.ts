@@ -7,21 +7,16 @@ export interface IGoodsCategoryType {
 export interface IGoodType {
   id: string;
   title: string;
-  group: IGoodsCategoryType;
-}
-
-export interface IGoodsType {
-  good: IGoodType;
-  price?: number;
   balance?: number;
+  price?: number;
+  group: IGoodsCategoryType;
 }
 
 export interface ICartType {
   good: IGoodType;
   count: number;
-  balance: number;
   price?: number;
-  summa?: number;
+  amount?: number;
   error?: string;
 }
 

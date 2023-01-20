@@ -1,3 +1,16 @@
 .errorCart {
     background-color: coral;
 }
+
+.validCart {
+    background-color: rgb(15, 128, 0);
+}
+
+.hoverDeleteIcon:hover {
+    cursor: pointer;
+    background-color: orangered;
+}
+
+.error-send-order {
+    color: red;
+}

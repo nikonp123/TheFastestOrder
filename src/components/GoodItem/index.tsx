@@ -1,23 +1,22 @@
 import './style.scss';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { ICartType, IGoodsType } from '../../types/goods.type';
-import { Form, InputGroup, Table } from 'react-bootstrap';
+import { ICartType, IGoodType } from '../../types/goods.type';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeItemCart } from '../../store/cartSlice';
 // import { getDataCart } from '../../utilites/handlingCart';
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useCallback, useState } from 'react';
 import CardGoodItem from './CardGoodItem';
 import { ECardVariants, SettingsValueType } from '../../types/settings.type';
 import TableGoodItem from './TableGoodItem';
 
 interface IGoodItemProps {
-  dataGood: IGoodsType;
+  dataGood: IGoodType;
   cardVariant: SettingsValueType;
 }
 
 export interface IGoodItemComponentProps {
-  dataGood: IGoodsType;
+  dataGood: IGoodType;
   count: number;
   cardVariant: SettingsValueType;
   error: string;
@@ -29,34 +28,36 @@ export interface IGoodItemComponentProps {
 function GoodItem({ dataGood, cardVariant }: IGoodItemProps) {
   const dispatch = useAppDispatch();
   const currentCountV =
-    useAppSelector((state) => state.cart).find(
-      (e) => e.good.id === dataGood.good.id
-    )?.count ?? 0;
+    useAppSelector((state) => state.cart).find((e) => e.good.id === dataGood.id)
+      ?.count ?? 0;
   const error =
-    useAppSelector((state) => state.cart).find(
-      (e) => e.good.id === dataGood.good.id
-    )?.error ?? '';
+    useAppSelector((state) => state.cart).find((e) => e.good.id === dataGood.id)
+      ?.error ?? '';
   const [count, setCount] = useState(currentCountV);
   // console.log(`render: ${dataGood.good.title} `);
 
-  const changeCount = (c: number): void => {
+  const changeCount = useCallback((c: number): void => {
     setCount((prev) => (prev + c < 0 ? 0 : prev + c));
-  };
+  }, []);
 
-  const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setCount(+e.target.value);
-  };
+  const changeInputHandler = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>): void => {
+      setCount(+e.target.value);
+    },
+    []
+  );
 
-  const orderHandler = (e: MouseEvent): void => {
-    e.preventDefault();
-    const currentItem: ICartType = {
-      good: dataGood.good,
-      balance: dataGood.balance ? dataGood.balance : 0,
-      count: count,
-      price: dataGood.price,
-    };
-    dispatch(changeItemCart(currentItem));
-  };
+  const orderHandler = useCallback(
+    (e: MouseEvent): void => {
+      e.preventDefault();
+      const currentItem: ICartType = {
+        good: dataGood,
+        count: count,
+      };
+      dispatch(changeItemCart(currentItem));
+    },
+    [dispatch, dataGood, count]
+  );
 
   const cardComponentsMapping = {
     [ECardVariants.cards]: CardGoodItem,

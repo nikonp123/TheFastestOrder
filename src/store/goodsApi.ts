@@ -1,6 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryError,
+  createApi,
+  fetchBaseQuery,
+} from '@reduxjs/toolkit/query/react';
 import { baseUrlRestApi } from '../config/restApiConig';
-import { IGoodsCategoryType, IGoodsType } from '../types/goods.type';
+import { IGoodsCategoryType, IGoodType } from '../types/goods.type';
 import { IOrderType } from '../types/order.type';
 import { EOrderGoodsVariants } from '../types/settings.type';
 
@@ -12,7 +18,7 @@ export const goodsApi = createApi({
   // ,paramsSerializer: (goodsCategory)=>()
   endpoints: (builder) => ({
     getGoods: builder.query<
-      IGoodsType[],
+      IGoodType[],
       {
         limit?: number;
         onlyWithBalance?: boolean;

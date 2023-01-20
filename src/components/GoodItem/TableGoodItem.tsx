@@ -24,12 +24,13 @@ export default function TableGoodItem({
     changeInputHandler,
   };
 
-  const classErrorCart = error ? ' errorCart ' : '';
+  const classCart = error ? ' errorCart ' : count !== 0 ? ' validCart ' : '';
+
   return (
     <React.Fragment>
-      <tr key={dataGood.good.id} className={classErrorCart}>
-        <td>{dataGood.good.id}</td>
-        <td>{dataGood.good.title}</td>
+      <tr key={dataGood.id} className={classCart}>
+        <td>{dataGood.id}</td>
+        <td>{dataGood.title}</td>
         <td>{dataGood.price}</td>
         <td>{dataGood.balance}</td>
         <td>

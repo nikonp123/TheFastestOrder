@@ -8,6 +8,8 @@ export const TRANSLATIONS_UA = {
   loadingData: 'Завантажую дані',
   apply: 'Застосувати',
   search: 'Пошук',
+  sendingOrder: 'Відправка замовлення',
+  error: 'Помилка',
   page1: {
     titlePage1: 'Укр titlePage1',
     page11: {

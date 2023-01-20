@@ -10,6 +10,7 @@ type AccessRights = {
 export type authState = {
   isAuth: boolean;
   name: string;
+  phone: string;
   language: languageType;
   accessRight?: AccessRights[];
 };
@@ -17,6 +18,7 @@ export type authState = {
 const initialState: authState = {
   isAuth: false,
   name: '',
+  phone: '',
   language: defaultLanguage,
   accessRight: [],
 };
@@ -32,6 +34,7 @@ const authSlice = createSlice({
       state.isAuth = action.payload.isAuth;
       state.language = action.payload.language;
       state.name = action.payload.name;
+      state.phone = action.payload.phone;
       // state.accessRight = []
     },
   },

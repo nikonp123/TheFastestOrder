@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 export default function Navigationbar() {
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+      <Navbar expand="sm" fixed="top" bg="dark" variant="dark">
         <NavbarList />
       </Navbar>
     </header>
