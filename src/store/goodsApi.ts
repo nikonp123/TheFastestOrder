@@ -1,10 +1,4 @@
-import {
-  BaseQueryFn,
-  FetchArgs,
-  FetchBaseQueryError,
-  createApi,
-  fetchBaseQuery,
-} from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseUrlRestApi } from '../config/restApiConig';
 import { IGoodsCategoryType, IGoodType } from '../types/goods.type';
 import { IOrderType } from '../types/order.type';

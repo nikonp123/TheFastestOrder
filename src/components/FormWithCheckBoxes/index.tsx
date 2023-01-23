@@ -1,20 +1,8 @@
-import { useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
-import {
-  ENamesGoodsFilters,
-  IGoodFilter,
-  IGoodsCategoryType,
-} from '../../types/goods.type';
+import { ENamesGoodsFilters, IGoodFilter } from '../../types/goods.type';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeGoodsFilterInArray } from '../../store/goodsFiltersSlice';
-import { useLazyGetGoodsQuery } from '../../store/goodsApi';
-import { getStringFromArrayGoodsFiltersByName } from '../../utilites/handlingGoods';
 import { goodsCategoryActions } from '../../store/goodsCategorySlice';
-import { FormCheck } from 'react-bootstrap';
-
-interface IFormWithCheckBoxesProps {
-  // goodsCategory: IGoodsCategoryType[] | undefined;
-}
 
 export default function FormWithCheckBoxes() {
   const dispatch = useAppDispatch();

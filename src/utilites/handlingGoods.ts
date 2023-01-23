@@ -1,6 +1,5 @@
 import {
   ENamesGoodsFilters,
-  ICartType,
   IGoodsCategoryType,
   IGoodsFilters,
   IGoodType,

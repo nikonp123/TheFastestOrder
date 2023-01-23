@@ -1,8 +1,6 @@
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useTranslation } from 'react-i18next';
-import { IGoodsCategoryType } from '../../types/goods.type';
 import FormWithCheckBoxes from '../FormWithCheckBoxes';
-import { Button } from 'react-bootstrap';
 import React from 'react';
 
 interface IFilterOffcanvasProps {

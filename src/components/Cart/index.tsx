@@ -24,7 +24,7 @@ export default function Cart() {
     usePostOrderMutation();
   const handleOnClick = async () => {
     try {
-      const res = await postOrder({
+      await postOrder({
         customer_phone: auth.phone,
         customer_firstName: auth.name,
         goods: cart,

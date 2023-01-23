@@ -12,7 +12,7 @@ export default function CartButtonHeader(props: ICartButtonHeaderProps) {
   const [isButtonAnnimated, setIsButtonAnnimated] = useState(false);
   const cartData = useAppSelector((state) => state.cart);
 
-  const { amountTotal, countTotal, itemsTotal } = getCartTotals(cartData);
+  const { amountTotal, itemsTotal } = getCartTotals(cartData);
   const titleCart =
     itemsTotal.toString() + 'од. ' + amountTotal.toFixed(2) + 'грн.';
   useEffect(() => {

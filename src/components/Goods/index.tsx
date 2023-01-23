@@ -1,16 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useMemo,
-  ChangeEvent,
-} from 'react';
-import {
-  useGetCategoryGoodsQuery,
-  useGetGoodsQuery,
-  useLazyGetGoodsQuery,
-} from '../../store/goodsApi';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useLazyGetGoodsQuery } from '../../store/goodsApi';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -22,14 +12,13 @@ import FilterOffcanvas from '../FilterOffcanvas';
 import { useAppSelector } from '../../hooks';
 import { getErrorMessage } from '../../utilites/errorProcessing';
 import RadioShowCards from '../RadioShowCards';
-import { Form, NavDropdown, Table } from 'react-bootstrap';
+import { Form, Table } from 'react-bootstrap';
 import useCardVariant from '../../hooks/use-card-variant';
 import { defaultSetForCardVariants } from '../../config/settingsConfig';
 import SpinnerLoading from '../UI/Spinner/SpinnerLoading';
 import { ENamesGoodsFilters } from '../../types/goods.type';
 import { useDebounce } from '../../hooks/use-debounce';
 import './style.scss';
-import { EOrderGoodsVariants } from '../../types/settings.type';
 import OrderGoods from '../OrderGoods';
 
 export default function Goods() {

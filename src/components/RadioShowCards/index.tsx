@@ -10,7 +10,7 @@ function RadioShowCards() {
     useAppSelector((state) => state.settings).find(
       (e) => e.name === 'cardsVariant'
     )?.value ?? ECardVariants.table;
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState(currentCardsVariant);
 
   const changeButtonHandler = (

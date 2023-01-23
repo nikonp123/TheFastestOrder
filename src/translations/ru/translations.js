@@ -10,4 +10,5 @@ export const TRANSLATIONS_RU = {
   search: 'Поиск',
   sendingOrder: 'Отправка заказа',
   error: 'Ошибка',
+  notAuthorized: 'Не авторизован',
 };

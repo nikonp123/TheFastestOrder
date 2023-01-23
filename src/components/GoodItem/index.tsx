@@ -1,6 +1,4 @@
 import './style.scss';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import { ICartType, IGoodType } from '../../types/goods.type';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { cartActions } from '../../store/cartSlice';

@@ -1,9 +1,7 @@
 import * as React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,10 +9,8 @@ import { useTranslation } from 'react-i18next';
 import CartButtonHeader from '../CartButtonHeader';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ESupportedLangs } from '../../config/i18nConfig';
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback } from 'react';
 import { languageActions } from '../../store/languageSlice';
-import { useDebounce } from '../../hooks/use-debounce';
-import { useGetGoodsQuery } from '../../store/goodsApi';
 
 export interface INavbarListProps {}
 
@@ -55,7 +51,7 @@ export default function NavbarList(props: INavbarListProps) {
   // const hideCartHandler = () => {
   //   // setCartIsVisible(false);
   // };
-  const userName = user.name ? user.name : 'Не авторизован';
+  const userName = user.name ? user.name : t('notAuthorized');
 
   return (
     <Container>

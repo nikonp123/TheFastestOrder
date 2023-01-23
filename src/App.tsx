@@ -11,8 +11,8 @@ import { useAppDispatch } from './hooks';
 function App() {
   const dispatch = useAppDispatch();
   const {
-    data: userData,
-    error: errorUser,
+    // data: userData,
+    // error: errorUser,
     isSuccess: userSuccess,
   } = useGetUserQuery('');
 

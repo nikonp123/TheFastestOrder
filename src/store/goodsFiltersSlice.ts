@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice, current } from '@reduxjs/toolkit';
-import { ENamesGoodsFilters, IGoodsFilters } from '../types/goods.type';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { IGoodsFilters } from '../types/goods.type';
 
 const initialState: IGoodsFilters[] = [
   // {
@@ -25,6 +25,7 @@ const goodsFiltersSlice = createSlice({
           return e;
         } else {
           e.value = action.payload.value;
+          return e;
         }
       });
     },

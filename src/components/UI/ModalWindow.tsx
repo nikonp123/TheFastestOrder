@@ -1,5 +1,4 @@
-import Modal, { ModalProps } from 'react-bootstrap/Modal';
-import { useTranslation } from 'react-i18next';
+import Modal from 'react-bootstrap/Modal';
 
 interface IModalWindowProps {
   text: string;

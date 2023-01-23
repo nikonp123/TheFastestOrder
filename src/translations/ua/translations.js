@@ -10,6 +10,7 @@ export const TRANSLATIONS_UA = {
   search: 'Пошук',
   sendingOrder: 'Відправка замовлення',
   error: 'Помилка',
+  notAuthorized: 'Не авторизован',
   page1: {
     titlePage1: 'Укр titlePage1',
     page11: {
