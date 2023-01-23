@@ -2,7 +2,7 @@ import { useAppSelector } from '../../hooks';
 import CartIcon from '../Cart/CartIcon';
 import { useEffect, useState } from 'react';
 import './style.scss';
-import { getCountAndAmountOfCart } from '../../utilites/handlingCart';
+import { getCartTotals } from '../../utilites/handlingCart';
 
 interface ICartButtonHeaderProps {
   onClick: () => void;
@@ -12,8 +12,9 @@ export default function CartButtonHeader(props: ICartButtonHeaderProps) {
   const [isButtonAnnimated, setIsButtonAnnimated] = useState(false);
   const cartData = useAppSelector((state) => state.cart);
 
-  // const cartItemsNumber = cartData.length;
-  const titleCart = getCountAndAmountOfCart(cartData);
+  const { amountTotal, countTotal, itemsTotal } = getCartTotals(cartData);
+  const titleCart =
+    itemsTotal.toString() + 'од. ' + amountTotal.toFixed(2) + 'грн.';
   useEffect(() => {
     if (titleCart !== '') {
       setIsButtonAnnimated(true);

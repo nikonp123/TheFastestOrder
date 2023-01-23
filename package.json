@@ -29,7 +29,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "node ./scripts/eslint.js",
+    "type:check": "node ./scripts/typecheck.js",
+    "i18n:check": "node ./scripts/i18n-check.js"    
   },
   "eslintConfig": {
     "extends": [

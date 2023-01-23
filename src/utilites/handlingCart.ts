@@ -1,3 +1,4 @@
+import { ITotalCart } from '../types/cart.type';
 import { ICartType } from '../types/goods.type';
 
 export function getDataCart(cart: ICartType[], id: string): number {
@@ -48,7 +49,6 @@ export function getCountAndAmountOfCart(cartData: ICartType[]): string {
   let titleCart = '';
   if (cartData.length !== 0) {
     const cartItemsNumber = cartData.length.toString();
-    console.log(cartItemsNumber);
     const initialAmount = 0;
     const amount = cartData.reduce(
       (accumulator, amount, currentIndex) =>
@@ -60,4 +60,24 @@ export function getCountAndAmountOfCart(cartData: ICartType[]): string {
   }
 
   return titleCart;
+}
+
+export function getCartTotals(cartData: ICartType[]): ITotalCart {
+  const itemsTotal = cartData.length;
+
+  const initialAmount = 0;
+  const amountTotal = cartData.reduce(
+    (accumulator, amount, currentIndex) =>
+      accumulator + (cartData[currentIndex].amount ?? 0),
+    initialAmount
+  );
+
+  const initialCount = 0;
+  const countTotal = cartData.reduce(
+    (accumulator, count, currentIndex) =>
+      accumulator + (cartData[currentIndex].count ?? 0),
+    initialCount
+  );
+
+  return { amountTotal, countTotal, itemsTotal };
 }

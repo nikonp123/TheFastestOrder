@@ -9,6 +9,7 @@ import { cartActions } from '../../store/cartSlice';
 import ModalWindow from '../UI/ModalWindow';
 import { useCallback, useEffect, useState } from 'react';
 import { getErrorMessage } from '../../utilites/errorProcessing';
+import { getCartTotals } from '../../utilites/handlingCart';
 
 export default function Cart() {
   const { t } = useTranslation();
@@ -16,12 +17,8 @@ export default function Cart() {
   const cart = useAppSelector((state) => state.cart);
   const auth = useAppSelector((state) => state.auth);
   const [showModalWindow, setShowModalWindow] = useState(false);
-  let countAll = 0;
-  let amountAll = 0;
-  cart.forEach((e) => {
-    countAll = countAll + e.count;
-    amountAll = amountAll + (e?.amount ?? 0);
-  });
+
+  const { amountTotal, countTotal } = getCartTotals(cart);
 
   const [postOrder, { isLoading, error, isError, isSuccess, data }] =
     usePostOrderMutation();
@@ -34,8 +31,8 @@ export default function Cart() {
       }).unwrap();
       dispatch(cartActions.clearCart());
     } catch (error) {
-      // console.log('eror')
-      // console.log(error)
+      // console.log('eror');
+      // console.log(error);
     }
   };
 
@@ -59,7 +56,6 @@ export default function Cart() {
     showModalWindow: true,
     onHideModalWindow,
   };
-
   return (
     <Container>
       <h1 className="mt-5">Замовлення</h1>
@@ -91,9 +87,9 @@ export default function Cart() {
           </tr>
           <tr>
             <td>Разом</td>
-            <td>{countAll}</td>
+            <td>{countTotal}</td>
             <td></td>
-            <td>{amountAll}</td>
+            <td>{amountTotal}</td>
             <td></td>
             <td></td>
           </tr>
@@ -105,9 +101,7 @@ export default function Cart() {
           {t('sendingOrder')} <SpinnerLoading />
         </h1>
       )}
-      {(isError || isSuccess) && showModalWindow && (
-        <ModalWindow {...propsModal} />
-      )}
+      {showModalWindow && <ModalWindow {...propsModal} />}
     </Container>
   );
 }

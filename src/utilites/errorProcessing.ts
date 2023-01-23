@@ -4,7 +4,6 @@ export function getErrorMessage(currentError: ErrorType): string {
   let errMsg = '';
   if (currentError) {
     if ('status' in currentError) {
-      // you can access all properties of `FetchBaseQueryError` here
       errMsg =
         'error' in currentError
           ? currentError.error
@@ -15,7 +14,6 @@ export function getErrorMessage(currentError: ErrorType): string {
           // signIn(false);
         }
       } else if ('data' in currentError) {
-        // you can access all properties of `FetchBaseQueryError` here
         errMsg =
           'error' in currentError
             ? currentError.error
