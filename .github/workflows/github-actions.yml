@@ -1,0 +1,39 @@
+name: GitHub Actions TFO
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Staring Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install modules
+        run: npm install
+      - name: build project
+        run: npm run build
+      - name: build storybook
+        run: npm run build:storybook
+      # - name: unit test
+      #   run: npm run test:unit
+      - name: lint code
+        run: npm run lint
+  i18n-coverage:
+    runs-on: ubuntu-latest
+    name: Check i18n coverage
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check i18n coverage
+        id: i18nCoverage
+        uses: alexkiro/i18n-coverage@v1.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          translations-path: 'translations/**/*.*'
+          ignore-languages: 'en'
+      - name: Get the coverage
+        run: echo "The coverage was ${{ steps.i18nCoverage.outputs.coverage }}"
