@@ -58,17 +58,17 @@ export default function Cart() {
   };
   return (
     <Container>
-      <h1 className="mt-5">Замовлення</h1>
+      <h1 className="mt-5">{t('orderCartTittle')}</h1>
       <Table striped bordered hover responsive="sm" className="mt-1">
         <thead className="mt-5">
           <tr>
             {/* <th className="col-1">#</th> */}
-            <th className="col-6">Товар</th>
-            <th className="col-1">Кількість</th>
-            <th className="col-1">Ціна</th>
-            <th className="col-2">Сума</th>
-            <th className="col-1">Видалити</th>
-            <th className="col-1">Залишок</th>
+            <th className="col-6">{t('good')}</th>
+            <th className="col-1">{t('count')}</th>
+            <th className="col-1">{t('price')}</th>
+            <th className="col-2">{t('amount')}</th>
+            <th className="col-1">{t('delete')}</th>
+            <th className="col-1">{t('balance')}</th>
           </tr>
         </thead>
         <tbody>
@@ -78,7 +78,7 @@ export default function Cart() {
         </tbody>
         <tfoot className="fs-4 bg-secondary">
           <tr>
-            <td>Знижка</td>
+            <td>{t('discount')}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -86,7 +86,7 @@ export default function Cart() {
             <td></td>
           </tr>
           <tr>
-            <td>Разом</td>
+            <td>{t('total')}</td>
             <td>{countTotal}</td>
             <td></td>
             <td>{amountTotal}</td>
@@ -95,7 +95,7 @@ export default function Cart() {
           </tr>
         </tfoot>
       </Table>
-      <Button onClick={() => handleOnClick()}>Відправити</Button>
+      <Button onClick={() => handleOnClick()}>{t('send')}</Button>
       {isLoading && (
         <h1>
           {t('sendingOrder')} <SpinnerLoading />

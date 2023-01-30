@@ -7,12 +7,15 @@ import { useGetUserQuery } from './store/userApi';
 import { useGetCategoryGoodsQuery } from './store/goodsApi';
 import { goodsCategoryActions } from './store/goodsCategorySlice';
 import { useAppDispatch } from './hooks';
+import SpinnerLoading from './components/UI/Spinner/SpinnerLoading';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
   const dispatch = useAppDispatch();
   const {
     // data: userData,
-    // error: errorUser,
+    error: errorUser,
+    isLoading: loadingUser,
     isSuccess: userSuccess,
   } = useGetUserQuery('');
 
@@ -28,8 +31,14 @@ function App() {
 
   return (
     <div className="App">
-      <Navigationbar></Navigationbar>
-      <Router />
+      {loadingUser && <SpinnerLoading />}
+      {errorUser && <ErrorPage errorTitle={'errorConnectTo1C'} />}
+      {!errorUser && (
+        <>
+          <Navigationbar></Navigationbar>
+          <Router />
+        </>
+      )}
     </div>
   );
 }
